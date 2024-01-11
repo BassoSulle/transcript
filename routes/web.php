@@ -15,7 +15,8 @@ use App\Http\Controllers\index_controller;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    notify()->success('Welcome to You Dashboard!.');
+    return view('index');
 });
 
 Route::get('/index', [index_controller::class, 'index'])

@@ -28,7 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-
+  @notifyCss
   {{--  livewire styles  --}}
   @livewireStyles
 
@@ -42,6 +42,7 @@
 </head>
 
 <body>
+
   <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -268,8 +269,11 @@
 
     </ul>
   </nav><!-- End Icons Navigation -->
+  <x-notify::notify />
 
 </header><!-- End Header -->
+{{-- <x:notify-messages /> --}}
+
 
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
@@ -520,7 +524,7 @@
     </nav>
   </div><!-- End Page Title -->
 
-    
+
     @yield('content')
 
 </main><!-- End #main -->
@@ -553,10 +557,10 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('assets/js/main.js')}}"></script>
-  
+
   {{--  livewire scripts  --}}
   @livewireScripts
-
+  @notifyJs
 </body>
 
 </html>

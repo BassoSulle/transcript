@@ -9,5 +9,11 @@ class index_controller extends Controller
     //
     public function index(){
         return view('index');
-}
+    }
+
+    public function departments(){
+        return view('staff.departments');
+    
+    }
+
 }

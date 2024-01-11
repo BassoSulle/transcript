@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -19,7 +22,60 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    // use AuthenticatesUsers;
+
+    public function show_login()
+    {
+        return view('auth.login');
+    }
+
+    public function authenticate(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        $remember_me = $request->has('remember');
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember_me)) {
+
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('staff.dashboard'));
+
+             // User login successful
+            //  $user = User::whereEmail($request['email'])->first();
+            //  $roleData = role::find(Auth::user()->role_id);
+            //  $role = $roleData->name; 
+ 
+            //  if ($role == '') {
+            //      return redirect()->intended(route('admin.dashboard'));
+            //  }
+            //  elseif ($role == 'Regional coordinator') {
+            //      return redirect()->intended(route('admin.dashboard'));
+            //  }
+            //   elseif ($role == 'AMREF personnel') {
+            //      return redirect()->intended(route('admin.dashboard'));
+            //  }
+            
+        } else {
+            return redirect()->back()->with('error', 'Invalid email or password');
+        }
+        
+    }
+
+    public function userProfile() {
+        // $email = auth()->user()->email;
+
+        return view('admin_panel.user_profile');
+    }
+
+    public function changePassword() {
+        // $email = auth()->user()->email;
+
+        return view('auth.passwords.reset');
+    }
 
     /**
      * Where to redirect users after login.

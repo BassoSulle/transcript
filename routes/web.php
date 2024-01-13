@@ -21,6 +21,10 @@ Route::get('/', function () {
 
 Route::get('/index', [index_controller::class, 'index'])
 ->name('index');
+Route::get('/module', [index_controller::class, 'module'])
+->name('module');
+Route::get('/semister', [index_controller::class, 'semister'])
+->name('semister');
 
 Auth::routes();
 

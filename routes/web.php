@@ -17,11 +17,16 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     notify()->success('Welcome to You Dashboard!.');
+//     return view('index');
 // });
 
-// Route::get('/', [index_controller::class, 'index'])
-// ->name('dashboard');
+Route::get('/index', [index_controller::class, 'index'])
+->name('index');
+Route::get('/module', [index_controller::class, 'module'])
+->name('module');
+Route::get('/semister', [index_controller::class, 'semister'])
+->name('semister');
 
 // Auth::routes();
 

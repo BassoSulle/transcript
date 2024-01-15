@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 class index_controller extends Controller
 {
@@ -16,4 +16,13 @@ class index_controller extends Controller
     
     }
 
+    public function module(){
+        return view('module');
+        
+    }
+    public function semister(){
+        return view('semister');
+        
+    }
+    
 }

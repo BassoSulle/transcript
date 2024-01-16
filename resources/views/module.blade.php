@@ -1,6 +1,6 @@
 @extends('layout.dashboard')
 
 @section('content')
-<livewire:module>
+<livewire:module-list>
 
 @endsection

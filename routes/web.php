@@ -27,6 +27,12 @@ Route::get('/module', [index_controller::class, 'module'])
 ->name('module');
 Route::get('/semister', [index_controller::class, 'semister'])
 ->name('semister');
+Route::get('/department', [index_controller::class, 'department'])
+->name('department');
+Route::get('/course', [index_controller::class, 'course'])
+->name('course');
+Route::get('/grade', [index_controller::class, 'grade'])
+->name('grade');
 
 // Auth::routes();
 

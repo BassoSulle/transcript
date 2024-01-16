@@ -16,13 +16,25 @@ class index_controller extends Controller
     
     }
 
+
     public function module(){
         return view('module');
-        
-    }
-    public function semister(){
-        return view('semister');
-        
-    }
-    
+}
+
+public function semister(){
+    return view('semister');
+}
+
+public function department(){
+    return view('department');
+}
+
+public function course(){
+    return view('course');
+}
+
+public function grade(){
+    return view('grade');
+}
+
 }

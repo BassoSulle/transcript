@@ -1,7 +1,7 @@
 @extends('layout.dashboard')
 
 @section('content')
-<livewire:semister-list>
+<livewire:grade-list>
 
 @endsection
 
@@ -9,7 +9,7 @@
 
     <script>
         window.addEventListener('close-modal', event => {
-            $('#AddSemistermodel').modal('hide');
+            //$('#AddDepartmentModel').modal('hide');
             // $('#editCondition').modal('hide');
             // $('#DeleteConditionModal').modal('hide');
         })

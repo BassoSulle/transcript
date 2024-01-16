@@ -1,5 +1,15 @@
 <div>
     <div>
+      <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- End Page Title -->
         <div class="position:absolute; top:0; right:0;">
             <!-- Disabled Backdrop Modal -->
             <button  type="button" class="button btn btn-primary" data-bs-toggle="modal" data-bs-target="#disablebackdrop">
@@ -62,7 +72,7 @@
                             </tr>
             @empty
             <tr>
-                <td colspan="3" class="text-center">No semisters found.</td>
+              <td colspan="3" class="text-center">No semisters found.</td>
             </tr>
             @endforelse
 

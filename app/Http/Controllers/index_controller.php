@@ -32,4 +32,12 @@ public function grade(){
     return view('grade');
 }
 
+
+
+
+    public function departments(){
+        return view('staff.departments');
+
+    }
 }
+

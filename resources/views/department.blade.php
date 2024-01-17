@@ -1,4 +1,4 @@
-@extends('layout.dashboard')
+@extends('layouts.dashboard')
 
 @section('content')
 <livewire:department-list>

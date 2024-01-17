@@ -36,6 +36,7 @@ class DepartmentList extends Component
 
 //Function to edit Department
 public function getDeptmentDetails(int $department_id) {
+    $this->department_id=$department_id;
     $departmentData = Department::find($department_id);
 
     if ($departmentData) {
@@ -47,11 +48,12 @@ public function getDeptmentDetails(int $department_id) {
 }
 
 //function to Edit Department
-public function EditDepartment(int $department_id) {
+public function EditDepartment() {
+
 
     $validatedData = $this->validate();
 
-    Department::where('id', $department_id)->update([
+    Department::where('id', $this->department_id)->update([
         'name' => $validatedData['name']
     ]);
     notify()->success('Semister is Deleted succesfully.!');

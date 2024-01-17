@@ -16,49 +16,39 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/', function () {
-    notify()->success('Welcome to You Dashboard!.');
-    return view('index');
-});
-
-Route::get('/index', [index_controller::class, 'index'])
-->name('index');
-Route::get('/module', [index_controller::class, 'module'])
-->name('module');
-Route::get('/semister', [index_controller::class, 'semister'])
-->name('semister');
-Route::get('/department', [index_controller::class, 'department'])
-->name('department');
-Route::get('/course', [index_controller::class, 'course'])
-->name('course');
-Route::get('/grade', [index_controller::class, 'grade'])
-->name('grade');
 // Route::get('/', function () {
-//     return view('welcome');
+//     notify()->success('Welcome to You Dashboard!.');
+//     return view('index');
 // });
-
-// Route::get('/', [index_controller::class, 'index'])
-// ->name('dashboard');
 
 // Auth::routes();
 
-
 Route::get('login', [LoginController::class, 'show_login'])->name('login');
+
 Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function() {
 
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/', [index_controller::class, 'index'])->name('dashboard');
 
-    Route::get('my_profile', [LoginController::class, 'userProfile'])->name('staff.profile');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('change_password', [LoginController::class, 'changePassword'])->name('staff.change_password');
+    Route::get('/my_profile', [LoginController::class, 'userProfile'])->name('profile');
 
-    Route::get('/', [index_controller::class, 'index'])->name('staff.dashboard');
+    Route::get('/change_password', [LoginController::class, 'changePassword'])->name('change_password');
 
-    Route::get('/departments', [index_controller::class, 'departments'])->name('departments');
+    Route::get('/module', [index_controller::class, 'module'])->name('module');
 
+    Route::get('/semister', [index_controller::class, 'semister'])->name('semister');
+
+    Route::get('/department', [index_controller::class, 'department'])->name('department');
+
+    Route::get('/course', [index_controller::class, 'course'])->name('course');
+
+    Route::get('/grade', [index_controller::class, 'grade'])->name('grade');
+
+    Route::get('/students', [index_controller::class, 'students'])->name('students');
 
 });

@@ -186,10 +186,6 @@ return [
         Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,

@@ -41,8 +41,11 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember_me)) {
 
             $request->session()->regenerate();
-
-            return redirect()->intended(route('staff.dashboard'));
+            
+            notify()->success('Welcome back '.auth()->user()->first_name.'');
+            
+            return redirect()->intended(route('dashboard'));
+         
 
              // User login successful
             //  $user = User::whereEmail($request['email'])->first();

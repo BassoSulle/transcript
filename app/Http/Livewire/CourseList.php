@@ -31,8 +31,9 @@ class CourseList extends Component
                     'department_id'=>$validatedData['department_id']
 
                     ]);
-
-        notify()->success('Course is added succesfully.!');
+        $this->dispatchBrowserEvent('close-modal');
+            
+        notify()->success('Course is added successfully.!');
 
     }
 

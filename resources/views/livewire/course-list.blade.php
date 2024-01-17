@@ -17,18 +17,18 @@
 
                         {{-- form inputs --}}
                         <form class="row g-3" wire:submit.prevent="SaveCourse">
-                            <div class="col-md-6">
-                              <input type="text" wire:model="name" class="form-control" placeholder="Course Nam" >
+                            <div class="col-md-12">
+                              <input type="text" wire:model="name" class="form-control" placeholder="Enter course name" >
                             </div>
-                            <div class="col-md-6">
-                              <input type="integer" wire:model="duration" class="form-control" placeholder="Course Duration">
+                            <div class="col-md-12">
+                              <input type="number" wire:model="duration" class="form-control" placeholder="Enter Course Duration">
                             </div>
                             <div class="col-12">
                               <select id="department_id" wire:model="department_id" class="form-select">
-                                <option selected>Department</option>
-                            @foreach ($departments as $department)
-                                <option value="{{$department->id}}">{{$department->name}}</option>
-                            @endforeach
+                                <option selected>Select Department</option>
+                                @foreach ($departments as $department)
+                                  <option value="{{$department->id}}">{{$department->name}}</option>
+                                @endforeach
                               </select>
                             </div>
                             <div class="modal-footer">
@@ -65,8 +65,8 @@
                         <td>{{$course->duration}}</td>
                         <td>{{$course->department->name}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary"><i class="bi bi-pen-fill"></i></button>
-                            <button type="button" wire:click="DeleteCourse({{$course->id}})" class="btn btn-primary"><i class="bi bi-trash-fill"></i></button>
+                            <button type="button" class="btn btn-warning"><i class="bi bi-pen-fill"></i></button>
+                            <button type="button" wire:click="DeleteCourse({{$course->id}})" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                         </td>
                     </tr>
                     @empty
@@ -77,9 +77,22 @@
                   </table>
                   <!-- End Primary Color Bordered Table -->
 
-
-            </div>
-
-    </div>
-
 </div>
+
+@push('scripts')
+
+  <script>
+      window.addEventListener('close-modal', event => {
+          $('#disablebackdrop').modal('hide');
+          $('#EditDepartmentModel').modal('hide');
+
+      });
+
+      window.addEventListener('open-edit-modal', event => {
+          $('#EditDepartmentModel').modal('show');
+
+      });
+
+  </script>
+
+@endpush

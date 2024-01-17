@@ -1,6 +1,4 @@
 <div>
-    <div>
-        <div>
             <div class="position:absolute; top:0; right:0;" >
 
                 <!-- Add semister Modal -->
@@ -11,7 +9,7 @@
                    <div class="modal-dialog">
                      <div class="modal-content">
                        <div class="modal-header">
-                         <h5 class="modal-title">Add Semister</h5>
+                         <h5 class="modal-title">Add Department</h5>
                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                        </div>
                        <div class="modal-body">
@@ -27,8 +25,8 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Save</button>
                             </div>
 
                           </form>
@@ -58,9 +56,8 @@
                                     <th scope="row">{{$a++}}</th>
                                     <td>{{$department->name ?? 'None'}}</td>
                                     <td>
-                                        <button type="button" wire:click="getDeptmentDetails({{$department->id}})" data-bs-toggle="modal" data-bs-target="#EditDepartmentModel"
-                                         class="btn btn-primary"><i class="bi bi-pen-fill"></i></button>
-                                        <button type="button" id="semister_id" wire:click="DeleteDepartment({{$department->id}})" class="btn btn-primary"><i class="bi bi-trash-fill"></i></button>
+                                        <button type="button" wire:click="getDeptmentDetails({{$department->id}})" class="btn btn-warning"><i class="bi bi-pen-fill"></i></button>
+                                        <button type="button" id="semister_id" wire:click="DeleteDepartment({{$department->id}})" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
                 @empty
@@ -94,8 +91,8 @@
              </div>
 
              <div class="modal-footer">
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="submit" class="btn btn-primary">Update</button>
+                 <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                 <button type="submit" class="btn btn-success">Update</button>
              </div>
 
            </form>
@@ -103,11 +100,23 @@
 
                  </div>
              </div>
-             </div><!-- End Disa
-
-            </div>
-
-
-    </div>
-
+             </div>
 </div>
+
+@push('scripts')
+
+  <script>
+      window.addEventListener('close-modal', event => {
+          $('#disablebackdrop').modal('hide');
+          $('#EditDepartmentModel').modal('hide');
+
+      });
+
+      window.addEventListener('open-edit-modal', event => {
+          $('#EditDepartmentModel').modal('show');
+
+      });
+
+  </script>
+
+@endpush

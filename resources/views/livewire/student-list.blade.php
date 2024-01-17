@@ -50,7 +50,10 @@
         <thead>
             <tr>
             <th scope="col">#</th>
-            <th scope="col">Semister Name</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Full name</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
@@ -58,10 +61,10 @@
             @php
                 $a=1;
             @endphp
-            @forelse ( $semisters as $semister )
+            @forelse ( $students as $student )
                 <tr>
                     <th scope="row">{{$a++}}</th>
-                    <td>{{$semister->name ?? 'None'}}</td>
+                    <td>{{$student->name ?? 'None'}}</td>
                     <td>
                         <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
                         <button type="button" class="btn btn-primary"><i class="fa fa-trash"></i></button>
@@ -69,7 +72,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3" class="text-center">No semisters found.</td>
+                    <td colspan="3" class="text-center">No student found.</td>
                 </tr>
             @endforelse 
         </tbody>

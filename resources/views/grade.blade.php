@@ -1,6 +1,7 @@
-@extends('layout.dashboard')
+@extends('layouts.dashboard')
 
 @section('content')
+
 <livewire:grade-list>
 
 @endsection

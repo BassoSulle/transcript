@@ -2,7 +2,7 @@
 
 @section('content')
 
-<livewire:department-list>
+<livewire:student-list>
 
 @endsection
 

@@ -77,6 +77,7 @@ class GradeList extends Component
     }
 
 
+
     public function render()
     {
        $grades=Grade::all();

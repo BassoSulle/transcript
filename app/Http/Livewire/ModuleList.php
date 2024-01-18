@@ -34,7 +34,11 @@ class ModuleList extends Component
 
                     ]);
 
+
         notify()->success('Module is added succesfully.!');
+
+        $this->dispatchBrowserEvent('close-modal');
+
 
     }
 
@@ -61,6 +65,8 @@ public function getModuleDetails(int $module_id){
         'code'=>$validatedData['code'],
         'semister_id'=>$validatedData['semister_id'],
         ]);
+        $this->dispatchBrowserEvent('close-modal');
+
 
     }
     public function DeleteModule(int $module_id){

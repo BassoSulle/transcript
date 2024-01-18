@@ -37,6 +37,9 @@ class GradeList extends Component
 
                     ]);
 
+        $this->dispatchBrowserEvent('close-modal');
+
+
         notify()->success('Grade is added succesfully.!');
 
     }
@@ -50,7 +53,8 @@ class GradeList extends Component
 
 //functionto  get grade details
     public function getGradeDetails(int $grade_id) {
-        $gradeData = Grade::find($grade_id);
+        $this->grade_id=$grade_id;
+        $gradeData = Grade::find($this->grade_id);
 
         if ($gradeData) {
             $this->grade_id = $gradeData->id;
@@ -62,18 +66,20 @@ class GradeList extends Component
     }
 
     //function to Edit Grade
-    public function EditGrade(int $grade_id) {
+    public function EditGrade() {
 
         $validatedData = $this->validate();
 
-        Grade::where('id', $grade_id)->update([
+        Grade::where('id', $this->grade_id)->update([
             'name' => $validatedData['name'],
             'low_marks' => $validatedData['low_marks'],
             'high_marks' => $validatedData['high_marks']
         ]);
+
+        $this->dispatchBrowserEvent('close-modal');
+
         notify()->success('Grade is Udated succesfully.!');
-        // $this->resetInput();
-        // $this->dispatchBrowserEvent('close-modal');
+
     }
 
 

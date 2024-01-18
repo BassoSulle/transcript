@@ -32,7 +32,7 @@ class CourseList extends Component
 
                     ]);
         $this->dispatchBrowserEvent('close-modal');
-            
+
         notify()->success('Course is added successfully.!');
 
     }
@@ -59,6 +59,9 @@ public function getCourseDetails(int $course_id){
         'duration'=>$validatedData['duration'],
         'department_id'=>$validatedData['department_id'],
         ]);
+
+        $this->dispatchBrowserEvent('close-modal');
+
 
     }
 //function to Delete course

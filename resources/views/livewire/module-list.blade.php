@@ -115,3 +115,20 @@
         </div>
 
 </div>
+@push('scripts')
+
+  <script>
+      window.addEventListener('close-modal', event => {
+          $('#disablebackdrop').modal('hide');
+          $('#EditModuleModel').modal('hide');
+
+      });
+
+      window.addEventListener('open-edit-modal', event => {
+          $('#EditModuleModel').modal('show');
+
+      });
+
+  </script>
+
+@endpush

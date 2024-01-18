@@ -17,13 +17,8 @@
 
                         {{-- form inputs --}}
                         <form class="row g-3" wire:submit.prevent="SaveCourse">
-<<<<<<< HEAD
-                            <div class="col-md-6">
-                              <input type="text" wire:model="name" class="form-control" placeholder="Course Name" >
-=======
                             <div class="col-md-12">
                               <input type="text" wire:model="name" class="form-control" placeholder="Enter course name" >
->>>>>>> origin/bashiri
                             </div>
                             <div class="col-md-12">
                               <input type="number" wire:model="duration" class="form-control" placeholder="Enter Course Duration">
@@ -70,15 +65,8 @@
                         <td>{{$course->duration}}</td>
                         <td>{{$course->department->name}}</td>
                         <td>
-<<<<<<< HEAD
-                            <button type="button" wire:click="getCourseDetails({{$course->id}})"
-                            data-bs-toggle="modal" data-bs-target="#EditCourseModel"
-                            class="btn btn-primary"><i class="bi bi-pen-fill"></i></button>
-                            <button type="button" wire:click="DeleteCourse({{$course->id}})" class="btn btn-primary"><i class="bi bi-trash-fill"></i></button>
-=======
-                            <button type="button" class="btn btn-warning"><i class="bi bi-pen-fill"></i></button>
+                            <button type="button" wire:click="getCourseDetails({{$course->id}})" data-bs-toggle="modal" data-bs-target="#EditCourseModel" class="btn btn-warning"><i class="bi bi-pen-fill"></i></button>
                             <button type="button" wire:click="DeleteCourse({{$course->id}})" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
->>>>>>> origin/bashiri
                         </td>
                     </tr>
                     @empty
@@ -89,7 +77,6 @@
                   </table>
                   <!-- End Primary Color Bordered Table -->
 
-<<<<<<< HEAD
 {{-- Model to Edit Course --}}
 <div class="modal fade" wire:ignore.self id="EditCourseModel" tabindex="-1" data-bs-backdrop="false">
     <div class="modal-dialog">
@@ -129,8 +116,6 @@
 
     </div>
 
-=======
->>>>>>> origin/bashiri
 </div>
 
 @push('scripts')
@@ -138,12 +123,12 @@
   <script>
       window.addEventListener('close-modal', event => {
           $('#disablebackdrop').modal('hide');
-          $('#EditDepartmentModel').modal('hide');
+          $('#EditCourseModel').modal('hide');
 
       });
 
       window.addEventListener('open-edit-modal', event => {
-          $('#EditDepartmentModel').modal('show');
+          $('#EditCourseModel').modal('show');
 
       });
 

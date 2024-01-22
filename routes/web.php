@@ -49,6 +49,6 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/grade', [index_controller::class, 'grade'])->name('grade');
 
-    Route::get('/students', [index_controller::class, 'students'])->name('students');
+    Route::get('/students', [index_controller::class, 'student'])->name('students');
 
 });

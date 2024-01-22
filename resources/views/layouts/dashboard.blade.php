@@ -283,14 +283,14 @@
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <li class="nav-item">
-      <a class="nav-link " href="index.html">
+      <a class="nav-link " href="{{ route('dashboard') }}">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="pages-blank.html">
+      <a class="nav-link collapsed" href="{{ route('staffs') }}">
         <i class="bi bi-file-earmark"></i>
         <span>Staffs</span>
       </a>
@@ -363,7 +363,7 @@
 
 </aside><!-- End Sidebar-->
 
-<main id="main" class="main">
+<main id="main" class="main" style="min-height: 77vh;">
 
   @yield('content')
 

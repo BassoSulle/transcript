@@ -2,6 +2,7 @@
 
 @section('content')
 
-    @livewire('staff.department-list')
+<livewire:add-staff>
 
 @endsection
+

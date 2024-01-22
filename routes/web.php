@@ -50,5 +50,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/grade', [index_controller::class, 'grade'])->name('grade');
     
     Route::get('/students', [index_controller::class, 'students'])->name('students');
+    
+    Route::get('/staffs', [index_controller::class, 'staffs'])->name('staffs');
+    
+    Route::get('/add_staff', [index_controller::class, 'add_staff'])->name('add.staff');
         
 });

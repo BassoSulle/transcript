@@ -42,4 +42,14 @@ class index_controller extends Controller
         
     }
 
+    public function staffs(){
+        return view('staff');
+        
+    }
+
+    public function add_staff(){
+        return view('add_staff');
+        
+    }
+
 }

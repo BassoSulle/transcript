@@ -2,18 +2,18 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col">
-        <h1>Students</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Students</li>
-            </ol>
-        </nav>
+                <h1>Staffs</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Staffs</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col">
+                <a href="{{ route('add.staff') }}" class="button btn btn-primary" style="float: right;">+Add Staff</a>
+            </div>
         </div>
-        <div class="col">
-            <button type="button" class="button btn btn-primary" data-bs-toggle="modal" data-bs-target="#disablebackdrop" style="float: right;">+Add Semister</button>
-        </div>
-    </div>
     </div>
     <!-- End Page Title -->
 
@@ -55,12 +55,11 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Photo</th>
                 <th scope="col">Full name</th>
-                <th scope="col">Reg.No.</th>
                 <th scope="col">Email</th>
                 <th scope="col">Gender</th>
-                <th scope="col">Course</th>
+                <th scope="col">Department</th>
+                <th scope="col">Position</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -68,13 +67,17 @@
             @php
                 $a=1;
             @endphp
-            @forelse ( $students as $student )
+            @forelse ( $staffs as $staff )
                 <tr>
                     <th scope="row">{{$a++}}</th>
-                    <td>{{$student->name ?? 'None'}}</td>
+                    <td>{{$staff->first_name }} {{$staff->middle_name }} {{$staff->surname }}</td>
+                    <td>{{$staff->email }}</td>
+                    <td>{{$staff->gender }}</td>
+                    <td>{{empty($staff->department_id) ? 'N/A' : $staff->department_id }}</td>
+                    <td>{{$staff->role }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-warning"><i class="bi bi-pen-fill"></i></button>
+                        <button type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             @empty

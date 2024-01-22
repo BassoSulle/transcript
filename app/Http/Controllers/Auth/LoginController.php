@@ -42,7 +42,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
             
-            notify()->success('Welcome back '.auth()->user()->first_name.'');
+            // notify()->success('Welcome back '.auth()->user()->first_name.'');
             
             return redirect()->intended(route('dashboard'));
          

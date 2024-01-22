@@ -104,10 +104,22 @@
                  </div>
                  </div>
              </div>
-             </div><!-- End D
+             </div>
 
-            </div>
+             @push('scripts')
 
-    </div>
+             <script>
+                 window.addEventListener('close-modal', event => {
+                     $('#disablebackdrop').modal('hide');
+                     $('#EditGradeModel').modal('hide');
 
-</div>
+                 });
+
+                 window.addEventListener('open-edit-modal', event => {
+                     $('#EditGradeModel').modal('show');
+
+                 });
+
+             </script>
+
+           @endpush

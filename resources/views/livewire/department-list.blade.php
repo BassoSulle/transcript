@@ -81,7 +81,7 @@
         <div class="modal-body">
 
          {{-- form inputs --}}
-         <form class="row g-3" wire:submit.prevent="EditDepartment({{$department_id}})">
+         <form class="row g-3" wire:submit.prevent="EditDepartment">
              <div class="col-12">
                <input type="text" wire:model="name" class="form-control" placeholder="Department Name">
                @error('name')

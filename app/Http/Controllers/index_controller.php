@@ -9,13 +9,8 @@ class index_controller extends Controller
     //
     public function index(){
         return view('index');
-        
-    }
+}
 
-    public function departments(){
-        return view('staff.departments');
-    
-    }
 
     public function module(){
         return view('module');
@@ -37,10 +32,6 @@ class index_controller extends Controller
         return view('grade');
     }
 
-    public function students(){
-        return view('student');
-        
-    }
 
     public function staffs(){
         return view('staff');

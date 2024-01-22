@@ -34,7 +34,39 @@ class ModuleList extends Component
 
                     ]);
 
+
         notify()->success('Module is added succesfully.!');
+
+        $this->dispatchBrowserEvent('close-modal');
+
+
+    }
+
+//Function to get module details
+public function getModuleDetails(int $module_id){
+    $this->module_id=$module_id;
+    $moduleData=Module::find($this->module_id);
+
+        if($moduleData){
+        $this->module_id=$moduleData->id;
+        $this->name=$moduleData->name;
+        $this->code=$moduleData->code;
+        $this->semister_id=$moduleData->semister_id;
+
+        }
+    }
+
+//function to edit semister
+    public function EditModule(){
+        $validatedData = $this->validate();
+
+        Module::where('id',$this->module_id)->update([
+        'name'=>$validatedData['name'],
+        'code'=>$validatedData['code'],
+        'semister_id'=>$validatedData['semister_id'],
+        ]);
+        $this->dispatchBrowserEvent('close-modal');
+
 
     }
     public function DeleteModule(int $module_id){

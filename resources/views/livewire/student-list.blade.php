@@ -12,7 +12,7 @@
             </div>
             <div class="col">
                 <button type="button" class="button btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#disablebackdrop" style="float: right;">+Add Semister</button>
+                    data-bs-target="#disablebackdrop" style="float: right;">+Add Student</button>
             </div>
         </div>
     </div>
@@ -128,26 +128,15 @@
     <table class="table table-bordered border-primary mt-2">
         <thead>
             <tr>
-                <<<<<<< HEAD <th scope="col">#</th>
-                    <th scope="col">Photo</th>
-                    <th scope="col">Full name</th>
-                    <th scope="col">Reg.No.</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Course</th>
-                    <th scope="col">Action</th>
-                    =======
-                    <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Middle Name</th>
-                    <th scope="col">Surname</th>
-                    <th scope="col">Reg. Number</th>
-                    <th scope="col">Email</th>
-                    {{-- <th scope="col">Date of Birth</th> --}}
-                    <th scope="col">Gender</th>
-                    <th scope="col">Course Name</th>
-                    <th scope="col">Action</th>
-                    >>>>>>> origin/sillo
+                <th scope="col">#</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Full name</th>
+                <th scope="col">Reg.No.</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Course</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -157,15 +146,19 @@
             @forelse ($students as $student)
                 <tr>
                     <th scope="row">{{ $a++ }}</th>
-                    <td>{{ $student->first_name ?? 'None' }}</td>
-                    <td>{{ $student->middle_name ?? 'None' }}</td>
-                    <td>{{ $student->surname ?? 'None' }}</td>
+                    <td>
+                        {{ $student->first_name ?? 'None' }} {{ $student->middle_name ?? 'None' }}
+                        {{ $student->surname ?? 'None' }}
+                    </td>
                     <td>{{ $student->registartion_no }}</td>
                     <td>{{ $student->email ?? 'None' }}</td>
-                    {{-- <td>{{$student->dob ?? 'None'}}</td> --}}
+                    <td>{{ $student->dob ?? 'None' }}</td>
                     <td>{{ $student->gender ?? 'None' }}</td>
                     <td>{{ $student->course->name ?? 'None' }}</td>
                     <td>
+                        <button type="button" wire:click="getStudentDetails({{ $student->id }})"
+                            data-bs-toggle="modal" data-bs-target="#ViewStudentModel" class="btn btn-info"><i
+                                class="bi bi-eye-fill"></i></button>
                         <button type="button" wire:click="getStudentDetails({{ $student->id }})"
                             data-bs-toggle="modal" data-bs-target="#EditStudentModel" class="btn btn-warning"><i
                                 class="bi bi-pen-fill"></i></button>
@@ -175,7 +168,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center">No student found.</td>
+                    <td colspan="9" class="text-center">No student found.</td>
                 </tr>
             @endforelse
         </tbody>

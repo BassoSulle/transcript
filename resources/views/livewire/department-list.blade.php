@@ -57,7 +57,7 @@
                                     <td>{{$department->name ?? 'None'}}</td>
                                     <td>
                                         <button type="button" wire:click="getDeptmentDetails({{$department->id}})" class="btn btn-warning"><i class="bi bi-pen-fill"></i></button>
-                                        <button type="button" id="semister_id" wire:click="DeleteDepartment({{$department->id}})" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                        <button type="button" wire:click="DeleteDepartment({{$department->id}})" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
                 @empty

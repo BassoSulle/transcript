@@ -31,6 +31,9 @@ class index_controller extends Controller
     public function grade(){
         return view('grade');
     }
+    public function student(){
+        return view('student');
+    }
 
 
     public function staffs(){

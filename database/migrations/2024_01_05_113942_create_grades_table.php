@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('high_marks');
             $table->integer('low_marks');
+            $table->integer('point');
             $table->timestamps();
         });
     }

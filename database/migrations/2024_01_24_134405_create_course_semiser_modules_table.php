@@ -13,24 +13,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('course_semiser_modules', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('middle_name');
-            $table->string('surname');
-            $table->unsignedBigInteger('registration_no');
             $table->unsignedBigInteger('course_id');
-            $table->string('email')->unique();
-            $table->string('gender');
-            $table->date('dob');
-            $table->string('passport_size');
-            $table->string('password')->default(bcrypt('12345'));
-            $table->rememberToken();
-            $table->timestamps(); // created_at will be admission date
+            $table->unsignedBigInteger('semister_id');
+            $table->json('module_ids')->nullable();
+            $table->timestamps();
 
+            // Foreign key
             $table->foreign('course_id')
                 ->references('id')
                 ->on('courses')
+                ->cascadeOnDelete();
+
+            $table->foreign('semister_id')
+                ->references('id')
+                ->on('semisters')
                 ->cascadeOnDelete();
         });
     }
@@ -42,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('course_semiser_modules');
     }
 };

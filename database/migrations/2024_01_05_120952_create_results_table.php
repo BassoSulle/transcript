@@ -15,22 +15,24 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->integer('registration_no');
+            $table->unsignedBigInteger('student_reg_no');
             $table->string('module_code');
-            $table->double('marks');
-            $table->unsignedBigInteger('grade_id');
+            $table->double('c_a_marks');
+            $table->double('s_e_marks');
+            $table->double('total_marks');
+            $table->unsignedBigInteger('grade_id')->nullable();
             $table->unsignedBigInteger('staff_id');
             $table->timestamps(); //created_at will be used as uploaded_date
 
             $table->foreign('grade_id')
-            ->references('id')
-            ->on('grades')
-            ->cascadeOnDelete();
+                ->references('id')
+                ->on('grades')
+                ->cascadeOnDelete();
 
             $table->foreign('staff_id')
-            ->references('id')
-            ->on('staffs')
-            ->cascadeOnDelete();
+                ->references('id')
+                ->on('staffs')
+                ->cascadeOnDelete();
 
         });
     }

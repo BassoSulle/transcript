@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('award__classifications', function (Blueprint $table) {
+        Schema::create('award_classifications', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('overall_gpa');

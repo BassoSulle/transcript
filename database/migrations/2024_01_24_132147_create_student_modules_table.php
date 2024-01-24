@@ -13,23 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('student_modules', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('duration');
-            $table->unsignedBigInteger('department_id');
-            $table->unsignedBigInteger('n_t_a_level_id')->nullable();
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('module_id');
+            $table->boolean('complete_status')->default(false);
             $table->timestamps();
 
-            $table->foreign('department_id')
+            // Foreignkey
+            $table->foreign('student_id')
                 ->references('id')
-                ->on('departments')
+                ->on('students')
                 ->cascadeOnDelete();
 
-                $table->foreign('n_t_a_level_id')
+            $table->foreign('module_id')
                 ->references('id')
-                ->on('n_t_a_s')
+                ->on('modules')
                 ->cascadeOnDelete();
+
         });
     }
 
@@ -40,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('student_modules');
     }
 };

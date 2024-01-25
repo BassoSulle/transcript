@@ -22,6 +22,9 @@
                         <div class="col-md-6">
                           <input type="text" wire:model="name" class="form-control" placeholder="Module Name">
                         </div>
+                        <div class="col-md-6">
+                            <input type="text" wire:model="credit" class="form-control" placeholder="Module credit">
+                          </div>
                         <div class="col-md-4">
                           <select id="semister_id" wire:model="semister_id" class="form-select">
                             <option selected>Semiter</option>
@@ -49,6 +52,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Module Name</th>
                     <th scope="col">Module Code</th>
+                    <th scope="col">Module Credit</th>
                     <th scope="col">Semister name</th>
                     <th scope="col">Action</th>
                   </tr>
@@ -62,6 +66,7 @@
                     <th scope="row">{{$i++}}</th>
                     <td>{{$module->name}}</td>
                     <td>{{$module->code}}</td>
+                    <td>{{$module->credit}}</td>
                     <td>{{$module->semister->name ?? 'None'}}</td>
                     <td>
                         <button type="button" wire:click="getModuleDetails({{$module->id}})" data-bs-toggle="modal" data-bs-target="#EditModuleModel" class="btn btn-primary"><i class="bi bi-pen-fill"></i></button>
@@ -94,6 +99,9 @@
              <div class="col-md-6">
                <input type="text" wire:model="name" class="form-control" placeholder="Module Name">
              </div>
+             <div class="col-md-6">
+                <input type="text" wire:model="credit" class="form-control" placeholder="Module Credit">
+              </div>
              <div class="col-md-4">
                <select id="semister_id" wire:model="semister_id" class="form-select">
                  <option selected>Semiter</option>

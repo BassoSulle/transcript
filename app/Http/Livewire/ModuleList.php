@@ -10,12 +10,13 @@ use App\Models\Module;
 
 class ModuleList extends Component
 {
-    public $name,$code,$module_id,$semister_id;
+    public $name,$code,$module_id,$credit,$semister_id;
 
 
     public $rules = [
         'name' => 'required',
         'code' => 'required',
+        'credit' => 'required',
         'semister_id' => 'required',
     ];
 
@@ -30,6 +31,7 @@ class ModuleList extends Component
         Module::create([
                     'name'=>$validatedData['name'],
                     'code'=>$validatedData['code'],
+                    'credit'=>$validatedData['credit'],
                     'semister_id'=>$validatedData['semister_id']
 
                     ]);
@@ -51,6 +53,7 @@ public function getModuleDetails(int $module_id){
         $this->module_id=$moduleData->id;
         $this->name=$moduleData->name;
         $this->code=$moduleData->code;
+        $this->credit=$moduleData->credit;
         $this->semister_id=$moduleData->semister_id;
 
         }
@@ -63,6 +66,7 @@ public function getModuleDetails(int $module_id){
         Module::where('id',$this->module_id)->update([
         'name'=>$validatedData['name'],
         'code'=>$validatedData['code'],
+        'credit'=>$validatedData['credit'],
         'semister_id'=>$validatedData['semister_id'],
         ]);
         $this->dispatchBrowserEvent('close-modal');

@@ -23,6 +23,8 @@ class SemisterList extends Component
         Semister::create([
             'name'=>$validatedData['name']
             ]);
+
+            $this->dispatchBrowserEvent('close-modal');
             notify()->success('Semister is added successfully..!');
 
         // $this->resetInput();
@@ -39,6 +41,8 @@ class SemisterList extends Component
         $this->semister_id=$semisterData->id;
         $this->name=$semisterData->name;
 
+        $this->dispatchBrowserEvent('open-edit-modal');
+
         }
     }
 
@@ -49,6 +53,9 @@ class SemisterList extends Component
         Semister::where('id',$semister_id)->update([
         'name'=>$validatedData['name'],
         ]);
+        $this->dispatchBrowserEvent('close-modal');
+
+
 
     }
 

@@ -44,7 +44,7 @@
                         @enderror
                     </div>
                         <div class="col-md-8">
-                            <input type="integer" wire:model="registartion_no" class="form-control" placeholder="Enter  Registration Number">
+                            <input type="integer" wire:model="registration_no" class="form-control" placeholder="Enter  Registration Number">
                             @error('name')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -135,7 +135,7 @@
                     <td>{{$student->first_name ?? 'None'}}</td>
                     <td>{{$student->middle_name ?? 'None'}}</td>
                     <td>{{$student->surname ?? 'None'}}</td>
-                    <td>{{$student->registartion_no}}</td>
+                    <td>{{$student->registration_no}}</td>
                     <td>{{$student->email ?? 'None'}}</td>
                     {{-- <td>{{$student->dob ?? 'None'}}</td> --}}
                     <td>{{$student->gender ?? 'None'}}</td>
@@ -186,7 +186,7 @@
                 @enderror
             </div>
                 <div class="col-md-8">
-                    <input type="integer" wire:model="registartion_no" class="form-control" placeholder="Enter  Registration Number">
+                    <input type="integer" wire:model="registration_no" class="form-control" placeholder="Enter  Registration Number">
                     @error('name')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror

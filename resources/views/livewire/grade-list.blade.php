@@ -21,6 +21,9 @@
                               <input type="text" wire:model="name" class="form-control" placeholder="Grade Name" >
                             </div>
                             <div class="col-md-6">
+                                <input type="text" wire:model="point" class="form-control" placeholder="Grade Point" >
+                              </div>
+                            <div class="col-md-6">
                                 <input type="integer" wire:model="high_marks" class="form-control" placeholder="High Marks">
                               </div>
                               <div class="col-md-6">
@@ -45,6 +48,7 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Grade Name</th>
+                        <th scope="col">Grade Point</th>
                         <th scope="col">Low Marks</th>
                         <th scope="col">High Marks</th>
                         <th scope="col">Action</th>
@@ -58,6 +62,7 @@
                     <tr>
                         <th scope="row">{{$i++}}</th>
                         <td>{{$grade->name}}</td>
+                        <td>{{$grade->point}}</td>
                         <td>{{$grade->low_marks}}</td>
                         <td>{{$grade->high_marks}}</td>
                         <td>
@@ -89,6 +94,9 @@
              <div class="col-md-6">
                <input type="text" wire:model="name" class="form-control" placeholder="Grade Name" >
              </div>
+             <div class="col-md-6">
+                <input type="text" wire:model="point" class="form-control" placeholder="Grade Point" >
+              </div>
              <div class="col-md-6">
                  <input type="integer" wire:model="high_marks" class="form-control" placeholder="High Marks">
                </div>

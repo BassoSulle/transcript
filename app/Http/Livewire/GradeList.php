@@ -10,6 +10,7 @@ class GradeList extends Component
 {
 
     public $name;
+    public $point;
     public $low_marks;
     public $high_marks;
     public $grade_id;
@@ -18,6 +19,7 @@ class GradeList extends Component
 
     public $rules = [
         'name' => 'required',
+        'point' => 'required',
         'low_marks' => 'required',
         'high_marks' => 'required',
     ];
@@ -32,6 +34,7 @@ class GradeList extends Component
         $validatedData = $this->validate();
         Grade::create([
                     'name'=>$validatedData['name'],
+                    'point'=>$validatedData['point'],
                     'low_marks'=>$validatedData['low_marks'],
                     'high_marks'=>$validatedData['high_marks']
 
@@ -58,6 +61,8 @@ class GradeList extends Component
 
         if ($gradeData) {
             $this->grade_id = $gradeData->id;
+            $this->name = $gradeData->name;
+            $this->point = $gradeData->point;
             $this->low_marks = $gradeData->low_marks;
             $this->high_marks = $gradeData->high_marks;
 
@@ -72,6 +77,7 @@ class GradeList extends Component
 
         Grade::where('id', $this->grade_id)->update([
             'name' => $validatedData['name'],
+            'point' => $validatedData['point'],
             'low_marks' => $validatedData['low_marks'],
             'high_marks' => $validatedData['high_marks']
         ]);

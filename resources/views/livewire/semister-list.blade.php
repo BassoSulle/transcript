@@ -105,11 +105,22 @@
 
                  </div>
              </div>
-             </div><!--
+             </div><!-
 
-            </div>
+             @push('scripts')
 
+             <script>
+                 window.addEventListener('close-modal', event => {
+                     $('#disablebackdrop').modal('hide');
+                     $('#EditSemisterModel').modal('hide');
 
-    </div>
+                 });
 
-</div>
+                 window.addEventListener('open-edit-modal', event => {
+                     $('#EditSemisterModel').modal('show');
+
+                 });
+
+             </script>
+
+           @endpush

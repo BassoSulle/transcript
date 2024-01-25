@@ -10,13 +10,13 @@ use Livewire\WithFileUploads;
 class StudentList extends Component
 {
     use WithFileUploads;
-    public $first_name,$middle_name,$surname,$registartion_no,$email,$gender,$dob,$passport_size,$course_id,$student_id;
+    public $first_name,$middle_name,$surname,$registration_no,$email,$gender,$dob,$passport_size,$course_id,$student_id;
 
     public $rules = [
         'first_name' => 'required',
         'middle_name' => 'required',
         'surname' => 'required',
-        'registartion_no' => 'required',
+        'registration_no' => 'required',
         'email' => 'required',
         'gender' => 'required',
         'dob' => 'required',
@@ -36,7 +36,7 @@ class StudentList extends Component
                     'first_name'=>$validatedData['first_name'],
                     'middle_name'=>$validatedData['middle_name'],
                     'surname'=>$validatedData['surname'],
-                    'registartion_no'=>$validatedData['registartion_no'],
+                    'registration_no'=>$validatedData['registration_no'],
                     'email'=>$validatedData['email'],
                     'gender'=>$validatedData['gender'],
                     'dob'=>$validatedData['dob'],
@@ -62,7 +62,7 @@ class StudentList extends Component
             $this->first_name=$studentData->first_name;
             $this->middle_name=$studentData->middle_name;
             $this->surname=$studentData->surname;
-            $this->registartion_no=$studentData->registartion_no;
+            $this->registration_no=$studentData->registration_no;
             $this->email=$studentData->email;
             $this->gender=$studentData->gender;
             $this->dob=$studentData->dob;
@@ -80,7 +80,7 @@ class StudentList extends Component
         'first_name'=>$validatedData['first_name'],
         'middle_name'=>$validatedData['middle_name'],
         'surname'=>$validatedData['surname'],
-        'registartion_no'=>$validatedData['registartion_no'],
+        'registration_no'=>$validatedData['registration_no'],
         'email'=>$validatedData['email'],
         'gender'=>$validatedData['gender'],
         'dob'=>$validatedData['dob'],

@@ -34,13 +34,14 @@ class index_controller extends Controller
     public function student(){
         return view('student');
     }
-
-
-
-
-    public function departments(){
-        return view('staff.departments');
-
+    public function student_dashboard(){
+        return view('layouts.student');
     }
+
+    public function staff_dashboard(){
+        return view('layouts.staff');
+    }
+
+
 }
 

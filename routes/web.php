@@ -54,8 +54,8 @@ Route::middleware(['auth'])->group(function() {
 });
 
 //Student routes
-Route::get('student/dashboard', [index_controller::class, 'student_dashboard'])->name('student_dashboad');
-Route::get('staff/dashboard', [index_controller::class, 'staff_dashboard'])->name('staff_dashboad');
+// Route::get('student/dashboard', [index_controller::class, 'student_dashboard'])->name('student_dashboad');
+// Route::get('staff/dashboard', [index_controller::class, 'staff_dashboard'])->name('staff_dashboad');
 
 
 // Route::group(['prefex=>student','middleware'=>'auth'],function(){

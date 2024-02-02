@@ -53,6 +53,20 @@ Route::middleware(['auth'])->group(function() {
 
 });
 
-//Staff routes
+//Student routes
 Route::get('student/dashboard', [index_controller::class, 'student_dashboard'])->name('student_dashboad');
 Route::get('staff/dashboard', [index_controller::class, 'staff_dashboard'])->name('staff_dashboad');
+
+
+// Route::group(['prefex=>student','middleware'=>'auth'],function(){
+//     Route::get('student/dashboard', [index_controller::class, 'student_dashboard'])->name('student_dashboad');
+
+
+// });
+
+// //Student routes
+// Route::group(['prefex'=>'staff','middleware'=>'auth'],function(){
+//     Route::get('staff/dashboard', [index_controller::class, 'staff_dashboard'])->name('staff_dashboad');
+
+
+// });

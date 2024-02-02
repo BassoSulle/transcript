@@ -23,7 +23,11 @@ class User extends Authenticatable
         'first_name',
         'middle_name',
         'surname',
+        'role',
+        'department_id',
+        'gender',
         'email',
+        'module_ids',
         'password',
     ];
 
@@ -45,4 +49,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function department() {
+        return $this->belongsTo(Department::class);
+        
+    }
 }

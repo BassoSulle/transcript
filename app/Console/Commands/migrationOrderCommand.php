@@ -43,7 +43,8 @@ class migrationOrderCommand extends Command
             '2024_01_05_115018_create_students_table.php',
             '2024_01_24_134405_create_course_semiser_modules_table.php',
             '2024_01_24_132147_create_student_modules_table.php',
-            '2024_01_05_120952_create_results_table.php'
+            '2024_01_05_120952_create_results_table.php',
+            '2024_02_02_080555_create_lecturer_modules_table.php'
 
         ];
 

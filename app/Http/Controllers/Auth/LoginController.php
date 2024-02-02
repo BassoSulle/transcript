@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -42,23 +43,20 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
             
-            notify()->success('Welcome back '.auth()->user()->first_name.'');
+            // notify()->success('Welcome back '.auth()->user()->first_name.'');
             
-            return redirect()->intended(route('dashboard'));
-         
+            // return redirect()->intended(route('dashboard'));
 
-             // User login successful
-            //  $user = User::whereEmail($request['email'])->first();
-            //  $roleData = role::find(Auth::user()->role_id);
-            //  $role = $roleData->name; 
+            //  User login successful
+             $user = User::whereEmail($request['email'])->first();
  
-            //  if ($role == '') {
-            //      return redirect()->intended(route('admin.dashboard'));
-            //  }
-            //  elseif ($role == 'Regional coordinator') {
-            //      return redirect()->intended(route('admin.dashboard'));
-            //  }
-            //   elseif ($role == 'AMREF personnel') {
+             if ($user->role == 'Admin') {
+                 return redirect()->intended(route('dashboard'));
+             }
+             elseif ($user->role == 'Lecturer') {
+                 return redirect()->intended(route('lecturer.dashboard'));
+             }
+            //   elseif (auth()->user()->role == 'student') {
             //      return redirect()->intended(route('admin.dashboard'));
             //  }
             
@@ -95,5 +93,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect(route('login'));
     }
 }

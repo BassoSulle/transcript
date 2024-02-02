@@ -23,25 +23,33 @@ class DepartmentList extends Component
     public function SaveDepartment(){
         $validatedData = $this->validate();
      //dd($validatedData);
-        Department::create([
+        $department = Department::create([
             'name'=>$validatedData['name']
             ]);
+        
+        if($department) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->dispatchBrowserEvent('success_alert', 'Department saved successfully');
 
-        $this->dispatchBrowserEvent('close-modal');
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
+        }
 
-      return notify()->success('Department is added succesfully.!');
+
+    //   return notify()->success('Department is added successfully.!');
         // $this->resetInput();
 
 
     }
 
     //Function to edit Department
-    public function getDeptmentDetails(int $department_id) {
+    public function getDepartmentDetails(int $department_id) {
       $this->department_id=$department_id;
         $departmentData = Department::find($this->department_id);
 
         if ($departmentData) {
-            $this->department_id = $departmentData->id;
             $this->name = $departmentData->name;
 
             $this->dispatchBrowserEvent('open-edit-modal');
@@ -55,31 +63,55 @@ class DepartmentList extends Component
 
         $validatedData = $this->validate();
 
-        Department::where('id', $this->department_id)->update([
+        $department = Department::where('id', $this->department_id)->update([
             'name' => $validatedData['name']
         ]);
+  
+        if($department) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->dispatchBrowserEvent('success_alert', 'Department updated successfully');
 
-        $this->dispatchBrowserEvent('close-modal');
-
-        notify()->success('Semister is Updated successfully.!');
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
+        }
+        // notify()->success('Department is Updated successfully.!');
         // $this->resetInput();
     }
 
     public function getDeleteDepartment(int $department_id){
         $this->department_id=$department_id;
+        $this->dispatchBrowserEvent('openDeleteModal');
 
     }
 
     //Function to delete  Department
+    public function DeleteDepartment(){
 
-    public function DeleteDepartment(int $department_id){
+        $department = Department::where('id',$this->department_id)->delete();
 
-    Department::where('id',$department_id)->delete();
-    notify()->success('Department is Deleted successfully.!');
+        if($department) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('closeDeleteModal');
+            $this->dispatchBrowserEvent('success_alert', 'Department deleted successfully');
 
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
 
 
         }
+        // notify()->success('Department is Deleted successfully.!');
+
+    }
+
+    public function clearForm() {
+        $this->reset(
+            'name',
+            'department_id'
+        );
+    }
+        
     public function render()
     {
    $departments=Department::all();

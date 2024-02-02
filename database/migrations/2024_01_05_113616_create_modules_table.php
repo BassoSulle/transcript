@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('code');
             $table->string('credit');
-            $table->unsignedBigInteger('semister_id');
+            // $table->unsignedBigInteger('semister_id');
             $table->timestamps();
 
-            $table->foreign('semister_id')
-                ->references('id')
-                ->on('semisters')
-                ->cascadeOnDelete();
+            // $table->foreign('semister_id')
+            //     ->references('id')
+            //     ->on('semisters')
+            //     ->cascadeOnDelete();
         });
     }
 

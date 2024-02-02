@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class course_semiser_modules extends Model
+class AwardClassification extends Model
 {
     use HasFactory;
+
+    protected $table = 'award_classifications';
+    
+    protected $guarded = [];
 }

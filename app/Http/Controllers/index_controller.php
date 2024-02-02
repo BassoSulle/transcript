@@ -9,8 +9,7 @@ class index_controller extends Controller
     //
     public function index(){
         return view('index');
-}
-
+    }
 
     public function module(){
         return view('module');
@@ -34,6 +33,7 @@ class index_controller extends Controller
     public function student(){
         return view('student');
     }
+<<<<<<< HEAD
     public function student_dashboard(){
         return view('layouts.student');
     }
@@ -44,4 +44,53 @@ class index_controller extends Controller
 
 
 }
+=======
 
+
+    public function staffs(){
+        return view('staff');
+        
+    }
+>>>>>>> origin/bashiri
+
+    public function add_staff(){
+        return view('add_staff');
+        
+    }
+
+    public function edit_staff($staff){
+        return view('edit_staff', compact('staff'));
+        
+    }
+
+    public function nta_levels(){
+        return view('nta_level');
+        
+    }
+
+    public function awards(){
+        return view('award');
+        
+    }
+
+    public function courseSemisterModules(){
+        return view('course_semister_modules');
+        
+    }
+
+    public function addCourseSemisterModules(){
+        return view('add_course_semister_modules');
+        
+    }
+
+    public function editCourseSemisterModules($course){
+        return view('edit_course_semister_modules', compact('course'));
+        
+    }
+
+    public function assignModules($staff){
+        return view('assign_modules', compact('staff'));
+        
+    }
+
+}

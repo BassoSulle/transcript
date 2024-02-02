@@ -18,6 +18,12 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('award_id');
             $table->timestamps();
+
+            $table->foreign('award_id')
+                ->references('id')
+                ->on('award_classifications')
+                ->cascadeOnDelete();
+
         });
     }
 

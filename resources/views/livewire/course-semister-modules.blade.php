@@ -2,16 +2,17 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col">
-                <h1>Staffs</h1>
+                <h1>Semister modules</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Staffs</li>
+                        <li class="breadcrumb-item active">Semister modules</li>
                     </ol>
                 </nav>
             </div>
             <div class="col">
-                <a href="{{ route('add.staff') }}" class="button btn btn-primary" style="float: right;">+Add Staff</a>
+                <a href="{{ route('add.course_semister_modules') }}" class="button btn btn-primary"
+                    style="float: right;">+Add New</a>
             </div>
         </div>
     </div>
@@ -22,11 +23,10 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Full name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Department</th>
-                <th scope="col">Position</th>
+                <th scope="col">Course</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Semister</th>
+                <th scope="col">Number of modules</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -34,26 +34,28 @@
             @php
                 $a = 1;
             @endphp
-            @forelse ($staffs as $staff)
+            @forelse ($course_semister_modules as $item)
                 <tr>
                     <th scope="row">{{ $a++ }}</th>
-                    <td>{{ $staff->first_name }} {{ $staff->middle_name }} {{ $staff->surname }}</td>
-                    <td>{{ $staff->email }}</td>
-                    <td>{{ $staff->gender }}</td>
-                    <td>{{ empty($staff->department_id) ? 'N/A' : $staff->department->name }}</td>
-                    <td>{{ $staff->role }}</td>
+                    <td>{{ $item->course->name }}</td>
+                    <td>{{ $item->course->duration }}</td>
+                    <td>{{ $item->semister->name }}</td>
+                    @php
+                        $jsonArray = $item->module_ids;
+                        $phpArray = json_decode($jsonArray, true);
+                        $module_no = count($phpArray);
+                    @endphp
+                    <td>{{ $module_no }}</td>
                     <td>
-                        <a href="{{ route('assign_modules', ['staff' => $staff->id]) }}" type="button"
-                            class="btn btn-info text-white" title="Assign modules"><i class="bi bi-book-fill"></i></a>
-                        <a href="{{ route('edit.staff', ['staff' => $staff->id]) }}" type="button"
-                            class="btn btn-warning text-white" title="Edit"><i class="bi bi-pen-fill"></i></a>
-                        <button type="button" class="btn btn-danger" wire:click="getDeleteStaff({{ $staff->id }})"
-                            title="Delete"><i class="bi bi-trash-fill"></i></button>
+                        <a href="{{ route('edit.course_semister_modules', ['course' => $item->id]) }}" type="button"
+                            class="btn btn-warning text-white"><i class="bi bi-pen-fill"></i></a>
+                        <button type="button" class="btn btn-danger" wire:click="getDeleteCsm({{ $item->id }})"><i
+                                class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center">No staff found.</td>
+                    <td colspan="8" class="text-center">No Semister modules found.</td>
                 </tr>
             @endforelse
         </tbody>
@@ -71,9 +73,9 @@
                 </div>
                 <div class="modal-body">
                     {{-- form inputs --}}
-                    <form class="row g-3 align-items-center" wire:submit.prevent="DeleteStaff">
+                    <form class="row g-3 align-items-center" wire:submit.prevent="DeleteCsm">
                         <div class="text-center my-2 mt-3">
-                            Do you want to delete this Staff?
+                            Do you want to delete this Course semister modules?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-warning" data-bs-dismiss="modal"

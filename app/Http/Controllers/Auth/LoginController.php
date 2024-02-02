@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -44,21 +45,18 @@ class LoginController extends Controller
             
             // notify()->success('Welcome back '.auth()->user()->first_name.'');
             
-            return redirect()->intended(route('dashboard'));
-         
+            // return redirect()->intended(route('dashboard'));
 
-             // User login successful
-            //  $user = User::whereEmail($request['email'])->first();
-            //  $roleData = role::find(Auth::user()->role_id);
-            //  $role = $roleData->name; 
+            //  User login successful
+             $user = User::whereEmail($request['email'])->first();
  
-            //  if ($role == '') {
-            //      return redirect()->intended(route('admin.dashboard'));
-            //  }
-            //  elseif ($role == 'Regional coordinator') {
-            //      return redirect()->intended(route('admin.dashboard'));
-            //  }
-            //   elseif ($role == 'AMREF personnel') {
+             if ($user->role == 'Admin') {
+                 return redirect()->intended(route('dashboard'));
+             }
+             elseif ($user->role == 'Lecturer') {
+                 return redirect()->intended(route('lecturer.dashboard'));
+             }
+            //   elseif (auth()->user()->role == 'student') {
             //      return redirect()->intended(route('admin.dashboard'));
             //  }
             

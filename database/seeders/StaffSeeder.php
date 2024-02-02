@@ -18,7 +18,7 @@ class StaffSeeder extends Seeder
     {
         //
         //disable foreign key check for this connection before running seeders
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('staffs')->delete(); 
         
         User::create([
@@ -32,7 +32,7 @@ class StaffSeeder extends Seeder
             'remember_token'=> Str::random(60),
             ]);
             
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
     }
 }

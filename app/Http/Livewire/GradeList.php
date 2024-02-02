@@ -11,7 +11,7 @@ class GradeList extends Component
 
     public $name;
     public $low_marks;
-    public $high_marks;
+    public $high_marks, $point;
     public $grade_id;
 
 
@@ -20,6 +20,7 @@ class GradeList extends Component
         'name' => 'required',
         'low_marks' => 'required',
         'high_marks' => 'required',
+        'point' => 'required',
     ];
 
     public function updated($fields)
@@ -33,9 +34,10 @@ class GradeList extends Component
         Grade::create([
                     'name'=>$validatedData['name'],
                     'low_marks'=>$validatedData['low_marks'],
-                    'high_marks'=>$validatedData['high_marks']
+                    'high_marks'=>$validatedData['high_marks'],
+                    'point'=>$validatedData['point']
 
-                    ]);
+                ]);
 
         $this->dispatchBrowserEvent('close-modal');
 
@@ -60,6 +62,7 @@ class GradeList extends Component
             $this->grade_id = $gradeData->id;
             $this->low_marks = $gradeData->low_marks;
             $this->high_marks = $gradeData->high_marks;
+            $this->point = $gradeData->point;
 
         }
 
@@ -73,7 +76,9 @@ class GradeList extends Component
         Grade::where('id', $this->grade_id)->update([
             'name' => $validatedData['name'],
             'low_marks' => $validatedData['low_marks'],
-            'high_marks' => $validatedData['high_marks']
+            'high_marks' => $validatedData['high_marks'],
+            'point'=>$validatedData['point']
+
         ]);
 
         $this->dispatchBrowserEvent('close-modal');

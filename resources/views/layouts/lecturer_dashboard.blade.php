@@ -116,10 +116,11 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ route('lecturer.logout') }}" method="POST"
+                                    class="d-none">
                                     @csrf
                                 </form>
-                                <a href="{{ route('logout') }}"
+                                <a href="{{ route('lecturer.logout') }}"
                                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();"
                                     class="dropdown-item d-flex align-items-center">
@@ -153,54 +154,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('staffs') }}">
-                        <i class="bi bi-file-earmark"></i>
-                        <span>Staffs</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('students') }}">
                         <i class="bi bi-file-earmark"></i>
                         <span>Students</span>
                     </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('department') }}">
-                        <i class="bi bi-person"></i>
-                        <span>Departments</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('nta_levels') }}">
-                        <i class="bi bi-file-earmark"></i>
-                        <span>NTA Levels</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('awards') }}">
-                        <i class="bi bi-dash-circle"></i>
-                        <span>Awards</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('course') }}">
-                        <i class="bi bi-envelope"></i>
-                        <span>Courses</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('semister') }}">
-                        <i class="bi bi-question-circle"></i>
-                        <span>Semisters</span>
-                    </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('module') }}">
@@ -210,16 +169,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('grade') }}">
-                        <i class="bi bi-box-arrow-in-right"></i>
-                        <span>Grades</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('course_semister_modules') }}">
+                    <a class="nav-link collapsed" href="pages-error-404.html">
                         <i class="bi bi-dash-circle"></i>
-                        <span>Semister modules</span>
+                        <span>Results</span>
                     </a>
                 </li>
 
@@ -313,28 +265,6 @@
                         // )
                         // Redirect to a new page
                         window.location.href = '{{ route('staffs') }}';
-                    }
-                });
-            });
-
-            // Csm alert on add and update
-            window.addEventListener('csm_success_alert', message => {
-                Swal.fire({
-                    text: message.detail,
-                    icon: 'success',
-                    showCancelButton: false,
-                    // confirmButtonColor: '#ff4747',
-                    // cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ok'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Swal.fire(
-                        //   'Deleted!',
-                        //   'Your imaginary file has been deleted.',
-                        //   'success'
-                        // )
-                        // Redirect to a new page
-                        window.location.href = '{{ route('course_semister_modules') }}';
                     }
                 });
             });

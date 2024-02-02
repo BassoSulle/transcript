@@ -20,13 +20,20 @@ class SemisterList extends Component
 
     public function AddSemister(){
         $validatedData = $this->validate();
-        Semister::create([
+        $semister = Semister::create([
             'name'=>$validatedData['name']
             ]);
-            notify()->success('Semister is added successfully..!');
+            // notify()->success('Semister is added successfully..!');
 
-        // $this->resetInput();
-        // $this->dispatch('close-modal');
+        if($semister) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->dispatchBrowserEvent('success_alert', 'Semister added successfully');
+
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
+        }
 
 
     }
@@ -36,8 +43,10 @@ class SemisterList extends Component
     $semisterData=Semister::find($semister_id);
 
         if($semisterData){
-        $this->semister_id=$semisterData->id;
-        $this->name=$semisterData->name;
+            $this->semister_id=$semisterData->id;
+            $this->name=$semisterData->name;
+
+            $this->dispatchBrowserEvent('open-edit-modal');
 
         }
     }
@@ -46,25 +55,51 @@ class SemisterList extends Component
     public function EditSemister(int $semister_id){
         $validatedData = $this->validate();
 
-        Semister::where('id',$semister_id)->update([
+        $semister = Semister::where('id',$semister_id)->update([
         'name'=>$validatedData['name'],
         ]);
+
+        if($semister) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->dispatchBrowserEvent('success_alert', 'Semister Updated successfully');
+
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
+        }
 
     }
 
     public function getDeleteSemister(int $semister_id){
-    $this->semister_id=$semister_id;
+        $this->semister_id=$semister_id;
+        $this->dispatchBrowserEvent('openDeleteModal');
 
     }
 
-    public function DeleteSemister(int $semister_id){
+    public function DeleteSemister(){
+        $semister = Semister::where('id',$this->semister_id)->delete();
+        // notify()->success('Semister is Deleted succesfully.!');
 
-    Semister::where('id',$semister_id)->delete();
-    notify()->success('Semister is Deleted succesfully.!');
+        if($semister) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('closeDeleteModal');
+            $this->dispatchBrowserEvent('success_alert', 'Semister deleted successfully');
 
-
-
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
         }
+
+    }
+
+
+    public function clearForm() {
+        $this->reset(
+            'name',
+            'semister_id',
+        );
+    }
 
     public function render()
     {

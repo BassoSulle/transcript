@@ -15,7 +15,7 @@ class StaffList extends Component
 
     }
 
-    //Function to delete  Department
+    //Function to delete
 
     public function DeleteStaff(){
 
@@ -30,7 +30,6 @@ class StaffList extends Component
 
 
         }
-        // notify()->success('Department is Deleted successfully.!');
 
     }
 

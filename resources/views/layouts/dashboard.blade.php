@@ -69,7 +69,7 @@
 
                         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                             data-bs-toggle="dropdown">
-                            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
                             <span
                                 class="d-none d-md-block dropdown-toggle ps-2">{{ strtoupper(substr(auth()->user()->first_name, 0, 1)) }}.
                                 {{ strtoupper(substr(auth()->user()->middle_name, 0, 1)) }}.
@@ -270,7 +270,7 @@
 
                 Swal.fire({
                     position: 'center',
-                    icon: 'success',
+                    icon: 'info',
                     text: message.detail,
                 });
 
@@ -335,6 +335,28 @@
                         // )
                         // Redirect to a new page
                         window.location.href = '{{ route('course_semister_modules') }}';
+                    }
+                });
+            });
+
+            // student alert on add and update
+            window.addEventListener('student_success_alert', message => {
+                Swal.fire({
+                    text: message.detail,
+                    icon: 'success',
+                    showCancelButton: false,
+                    // confirmButtonColor: '#ff4747',
+                    // cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Swal.fire(
+                        //   'Deleted!',
+                        //   'Your imaginary file has been deleted.',
+                        //   'success'
+                        // )
+                        // Redirect to a new page
+                        window.location.href = '{{ route('students') }}';
                     }
                 });
             });

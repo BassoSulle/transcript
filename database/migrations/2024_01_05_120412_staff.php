@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('password');
             $table->rememberToken();
-            $table->json('module_ids')->nullable();
+            // $table->json('module_ids')->nullable();
             $table->timestamps();
 
             $table->foreign('department_id')

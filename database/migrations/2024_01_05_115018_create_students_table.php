@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('surname');
             $table->unsignedBigInteger('registration_no');
             $table->unsignedBigInteger('course_id');
             $table->string('email')->unique();
             $table->string('gender');
             $table->date('dob');
-            $table->string('passport_size');
+            $table->string('passport_size')->nullable();
             $table->string('password')->default(bcrypt('12345'));
             $table->rememberToken();
             $table->timestamps(); // created_at will be admission date

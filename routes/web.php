@@ -52,13 +52,10 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/students', [index_controller::class, 'students'])->name('students');
 
-<<<<<<< HEAD
-=======
     Route::get('/students/add', [index_controller::class, 'add_student'])->name('add.students');
 
     Route::get('/students/{student}/edit', [index_controller::class, 'edit_student'])->name('edit.students');
-    
->>>>>>> origin/bashiri
+
     Route::get('/staffs', [index_controller::class, 'staffs'])->name('staffs');
 
     Route::get('/staffs/add', [index_controller::class, 'add_staff'])->name('add.staff');

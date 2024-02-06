@@ -12,7 +12,7 @@ class GradeList extends Component
     public $name;
     public $point;
     public $low_marks;
-    public $high_marks, $point;
+    public $high_marks;
     public $grade_id;
 
 

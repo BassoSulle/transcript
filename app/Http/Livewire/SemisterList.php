@@ -23,13 +23,7 @@ class SemisterList extends Component
         $semister = Semister::create([
             'name'=>$validatedData['name']
             ]);
-<<<<<<< HEAD
-
-            $this->dispatchBrowserEvent('close-modal');
-            notify()->success('Semister is added successfully..!');
-=======
             // notify()->success('Semister is added successfully..!');
->>>>>>> origin/bashiri
 
         if($semister) {
             $this->clearForm();
@@ -38,7 +32,7 @@ class SemisterList extends Component
 
         } else {
             $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
-            
+
         }
 
 
@@ -77,7 +71,7 @@ class SemisterList extends Component
 
         } else {
             $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
-            
+
         }
 
     }
@@ -99,7 +93,7 @@ class SemisterList extends Component
 
         } else {
             $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
-            
+
         }
 
     }

@@ -30,6 +30,7 @@ class index_controller extends Controller
     public function grade(){
         return view('grade');
     }
+
     public function student(){
         return view('student');
     }
@@ -43,6 +44,13 @@ class index_controller extends Controller
 
 
 
+    public function add_student(){
+        return view('add_student');
+    }
+
+    public function edit_student($student){
+        return view('edit_student', compact('student'));
+    }
 
     public function staffs(){
         return view('staff');

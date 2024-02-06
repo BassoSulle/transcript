@@ -27,7 +27,7 @@ class StaffSeeder extends Seeder
             'surname' => "Maduka",
             'email'=>"georgemaduka92@gmail.com",
             'gender'=>"male",
-            'role'=> "administrator",
+            'role'=> "Admin",
             'password'=> bcrypt("12345"),
             'remember_token'=> Str::random(60),
             ]);

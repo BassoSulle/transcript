@@ -5,9 +5,9 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+        <title>Dashboard - {{ config('app.name', 'Laravel') }}</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords">
 
         <!-- Favicons -->
         <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
@@ -51,7 +51,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <a href="index.html" class="logo d-flex align-items-center">
                     <img src="assets/img/logo.png" alt="">
-                    <span class="d-none d-lg-block">NiceAdmin</span>
+                    <span class="d-none d-lg-block ms-2">SOMA</span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn"></i>
             </div><!-- End Logo -->
@@ -69,7 +69,7 @@
 
                         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                             data-bs-toggle="dropdown">
-                            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
                             <span
                                 class="d-none d-md-block dropdown-toggle ps-2">{{ strtoupper(substr(auth()->user()->first_name, 0, 1)) }}.
                                 {{ strtoupper(substr(auth()->user()->middle_name, 0, 1)) }}.
@@ -270,7 +270,7 @@
 
                 Swal.fire({
                     position: 'center',
-                    icon: 'success',
+                    icon: 'info',
                     text: message.detail,
                 });
 
@@ -335,6 +335,28 @@
                         // )
                         // Redirect to a new page
                         window.location.href = '{{ route('course_semister_modules') }}';
+                    }
+                });
+            });
+
+            // student alert on add and update
+            window.addEventListener('student_success_alert', message => {
+                Swal.fire({
+                    text: message.detail,
+                    icon: 'success',
+                    showCancelButton: false,
+                    // confirmButtonColor: '#ff4747',
+                    // cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Swal.fire(
+                        //   'Deleted!',
+                        //   'Your imaginary file has been deleted.',
+                        //   'success'
+                        // )
+                        // Redirect to a new page
+                        window.location.href = '{{ route('students') }}';
                     }
                 });
             });

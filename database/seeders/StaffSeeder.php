@@ -19,8 +19,8 @@ class StaffSeeder extends Seeder
         //
         //disable foreign key check for this connection before running seeders
         // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('staffs')->delete(); 
-        
+        DB::table('staffs')->delete();
+
         User::create([
             'first_name' => "Bashir",
             'middle_name' => "Basso",
@@ -31,7 +31,7 @@ class StaffSeeder extends Seeder
             'password'=> bcrypt("12345"),
             'remember_token'=> Str::random(60),
             ]);
-            
+
         // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
     }

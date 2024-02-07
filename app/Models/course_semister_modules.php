@@ -11,6 +11,11 @@ class course_semister_modules extends Model
 
     protected $guarded = [];
 
+    public function acYear(){
+
+        return $this->belongsTo(\App\Models\academicYearProgress::class, 'ac_year_id');
+    }
+
     public function course(){
 
         return $this->belongsTo(Course::class, 'course_id');

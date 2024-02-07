@@ -11,7 +11,7 @@ use App\Models\course_semister_modules;
 class AddCourseSemisterModules extends Component
 {
 
-    public $course_id, $semister_id;
+    public $course_id, $semister_id, $ac_year_id;
     
     public $module_ids = [];
 
@@ -25,6 +25,7 @@ class AddCourseSemisterModules extends Component
             $this->editMode = true;
             $course_semister_modules = course_semister_modules::find($this->course_id);
 
+            $this->ac_year_id = $course_semister_modules->ac_year_id;
             $this->course_id = $course_semister_modules->course_id;
             $this->semister_id = $course_semister_modules->semister_id;
             $this->module_ids = json_decode($course_semister_modules->module_ids);
@@ -38,6 +39,7 @@ class AddCourseSemisterModules extends Component
     public $rules = [
         'course_id' => ['required', 'integer'],
         'semister_id' => ['required', 'integer'],
+        'ac_year_id' => ['required', 'integer'],
     ];
 
     public function updated($fields)
@@ -60,6 +62,7 @@ class AddCourseSemisterModules extends Component
 
             if ($this->editMode){
                 $course_semister_modules = course_semister_modules::where('course_id', $this->course_id)->where('semister_id', $this->semister_id)->update([
+                    'ac_year_id' => $validatedData['ac_year_id'],
                     'course_id' => $validatedData['course_id'],
                     'semister_id' => $validatedData['semister_id'],
                     'module_ids' => $module_ids,
@@ -79,6 +82,7 @@ class AddCourseSemisterModules extends Component
             } else{
 
                 $course_semister_modules = course_semister_modules::create([
+                    'ac_year_id' => $validatedData['ac_year_id'],
                     'course_id' => $validatedData['course_id'],
                     'semister_id' => $validatedData['semister_id'],
                     'module_ids' => $module_ids,
@@ -111,6 +115,7 @@ class AddCourseSemisterModules extends Component
         $modules = Module::all();
         $semisters = Semister::all();
         $courses = Course::all();
+        $acYears = \App\Models\academicYearProgress::latest()->get();
 
         // if(!empty($this->semister_id)) {
         //     $modules = Module::all();
@@ -120,6 +125,7 @@ class AddCourseSemisterModules extends Component
             'courses' => $courses,
             'semisters' => $semisters,
             'modules' => $modules,
+            'acYears' => $acYears,
             
         ]);
     }

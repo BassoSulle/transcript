@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('gender');
             $table->date('dob');
             $table->string('passport_size')->nullable();
+            $table->string('role')->default('Student');
             $table->string('password')->default(bcrypt('12345'));
             $table->rememberToken();
             $table->timestamps(); // created_at will be admission date

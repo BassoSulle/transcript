@@ -77,6 +77,11 @@ class index_controller extends Controller
 
     }
 
+    public function academicYearProgress(){
+        return view('academic_year_progress');
+        
+    }
+
     public function courseSemisterModules(){
         return view('course_semister_modules');
 

@@ -69,7 +69,8 @@
 
                         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                             data-bs-toggle="dropdown">
-                            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
+                            <img src="{{ empty(auth()->user()->passport_size) ? asset('assets/img/profile-img.jpg') : asset('storage/student_passports/' . auth()->user()->passport_size) }}"
+                                alt="Profile" class="rounded-circle" width="35px">
                             <span
                                 class="d-none d-md-block dropdown-toggle ps-2">{{ strtoupper(substr(auth()->user()->first_name, 0, 1)) }}.
                                 {{ auth()->user()->middle_name != '' ? strtoupper(substr(auth()->user()->middle_name, 0, 1)) . '.' : '' }}
@@ -86,41 +87,21 @@
                                 <hr class="dropdown-divider">
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                                     <i class="bi bi-person"></i>
                                     <span>My Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-
-                            {{-- <li>
-                                <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                    <i class="bi bi-gear"></i>
-                                    <span>Account Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                    <i class="bi bi-question-circle"></i>
-                                    <span>Need Help?</span>
                                 </a>
                             </li> --}}
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                <form id="logout-form" action="{{ route('lecturer.logout') }}" method="POST"
+                                <form id="logout-form" action="{{ route('student.logout') }}" method="POST"
                                     class="d-none">
                                     @csrf
                                 </form>
-                                <a href="{{ route('lecturer.logout') }}"
+                                <a href="{{ route('student.logout') }}"
                                     onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();"
                                     class="dropdown-item d-flex align-items-center">
@@ -139,8 +120,6 @@
             {{-- @include('notify::components.notify') --}}
 
         </header><!-- End Header -->
-        {{-- <x:notify-messages /> --}}
-
 
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
@@ -148,23 +127,30 @@
             <ul class="sidebar-nav" id="sidebar-nav">
 
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ route('lecturer.dashboard') }}">
+                    <a class="nav-link " href="{{ route('student.dashboard') }}">
                         <i class="bi bi-grid"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('lecturer.module') }}">
-                        <i class="bi bi-card-list"></i>
-                        <span>Modules</span>
+                    <a class="nav-link collapsed" href="{{ route('student.profile') }}">
+                        <i class="bi bi-file-earmark"></i>
+                        <span>Profile</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link collapsed" href="{{ route('lecturer.student.results') }}">
+                    <a class="nav-link collapsed" href="{{ route('student.module') }}">
+                        <i class="bi bi-card-list"></i>
+                        <span>Modules Registration</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('student.academic.records') }}">
                         <i class="bi bi-dash-circle"></i>
-                        <span>Results</span>
+                        <span>Academic Records</span>
                     </a>
                 </li>
 

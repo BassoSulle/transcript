@@ -23,6 +23,7 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col">Academic year</th>
                 <th scope="col">Course</th>
                 <th scope="col">Duration</th>
                 <th scope="col">Semister</th>
@@ -37,6 +38,7 @@
             @forelse ($course_semister_modules as $item)
                 <tr>
                     <th scope="row">{{ $a++ }}</th>
+                    <td>{{ $item->acYear->year_of_studies }}</td>
                     <td>{{ $item->course->name }}</td>
                     <td>{{ $item->course->duration }}</td>
                     <td>{{ $item->semister->name }}</td>

@@ -18,7 +18,7 @@ class lecturer_module extends Model
 
     public function semister(){
 
-        return $this->belongsTo(Module::class, 'semister_id');
+        return $this->belongsTo(Semister::class, 'semister_id');
     }
 
 }

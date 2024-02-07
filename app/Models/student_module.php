@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class student_module extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function student(){
+
+        return $this->belongsTo(Student::class, 'student_id');
+    }
+
+    public function module(){
+
+        return $this->belongsTo(Module::class, 'module_id');
+    }
+    
 }

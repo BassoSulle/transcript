@@ -65,7 +65,7 @@ class ModuleList extends Component
             }
     }
 
-    //function to edit semister
+    //function to edit
     public function EditModule(){
         $validatedData = $this->validate();
 
@@ -124,7 +124,7 @@ class ModuleList extends Component
     public function render()
     {
         $modules=Module::all();
-        $semisters=Semister::latest()->get();
+        $semisters=Semister::all();
 
         return view('livewire.module-list', [
                 'modules'=> $modules,

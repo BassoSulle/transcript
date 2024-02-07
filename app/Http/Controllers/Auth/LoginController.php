@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -32,37 +33,69 @@ class LoginController extends Controller
 
     public function authenticate(Request $request): RedirectResponse
     {
-        $request->validate([
+        $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
         $remember_me = $request->has('remember');
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember_me)) {
+            // Check if the login request is for an admin or Lecturer
+            if (Auth::guard('web')->attempt($credentials)) {
 
-            $request->session()->regenerate();
+                $request->session()->regenerate();
             
-            // notify()->success('Welcome back '.auth()->user()->first_name.'');
-            
-            // return redirect()->intended(route('dashboard'));
-
-            //  User login successful
-             $user = User::whereEmail($request['email'])->first();
+                $user = User::whereEmail($request['email'])->first();
  
-             if ($user->role == 'Admin') {
-                 return redirect()->intended(route('dashboard'));
-             }
-             elseif ($user->role == 'Lecturer') {
-                 return redirect()->intended(route('lecturer.dashboard'));
-             }
-            //   elseif (auth()->user()->role == 'student') {
-            //      return redirect()->intended(route('admin.dashboard'));
-            //  }
+                if ($user->role == 'Admin') {
+                    return redirect()->intended(route('dashboard'));
+                }
+                elseif ($user->role == 'Lecturer') {
+                    return redirect()->intended(route('lecturer.dashboard'));
+                }
+                    
+            } elseif (Auth::guard('student')->attempt($credentials)) {
+    
+                $request->session()->regenerate();
+
+                $student = Student::whereEmail($request['email'])->first();
+    
+                if ($student->role == 'Student') {
+                    return redirect()->intended(route('student.dashboard'));
+                    
+                }
+    
+            } else {
+                // Authentication failed for both admin, Lecturer, and student
+                return back()->withErrors(['email' => 'Invalid email or password']);
+            }
+
+
+        // if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember_me)) {
+
+        //     $request->session()->regenerate();
             
-        } else {
-            return redirect()->back()->with('error', 'Invalid email or password');
-        }
+        //     // notify()->success('Welcome back '.auth()->user()->first_name.'');
+            
+        //     // return redirect()->intended(route('dashboard'));
+
+        //     //  User login successful
+        //      $user = User::whereEmail($request['email'])->first();
+ 
+        //      if ($user->role == 'Admin') {
+        //          return redirect()->intended(route('dashboard'));
+        //      }
+        //      elseif ($user->role == 'Lecturer') {
+        //          return redirect()->intended(route('lecturer.dashboard'));
+        //      }
+        //     //   elseif (auth()->user()->role == 'student') {
+        //     //      return redirect()->intended(route('admin.dashboard'));
+        //     //  }
+            
+        // } else {
+        //     return redirect()->back()->with('error', 'Invalid email or password');
+        // }
+        
         
     }
 

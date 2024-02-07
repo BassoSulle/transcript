@@ -50,7 +50,7 @@
 
             <div class="d-flex align-items-center justify-content-between">
                 <a href="index.html" class="logo d-flex align-items-center">
-                    <img src="assets/img/logo.png" alt="">
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
                     <span class="d-none d-lg-block ms-2">SOMA</span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -72,7 +72,7 @@
                             <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
                             <span
                                 class="d-none d-md-block dropdown-toggle ps-2">{{ strtoupper(substr(auth()->user()->first_name, 0, 1)) }}.
-                                {{ strtoupper(substr(auth()->user()->middle_name, 0, 1)) }}.
+                                {{ auth()->user()->middle_name != '' ? strtoupper(substr(auth()->user()->middle_name, 0, 1)) . '.' : '' }}
                                 {{ auth()->user()->surname }}</span>
                         </a><!-- End Profile Iamge Icon -->
 
@@ -112,9 +112,9 @@
                                     <span>Need Help?</span>
                                 </a>
                             </li> --}}
-                            <li>
+                            {{-- <li>
                                 <hr class="dropdown-divider">
-                            </li>
+                            </li> --}}
                             <li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
@@ -150,6 +150,13 @@
                     <a class="nav-link " href="{{ route('dashboard') }}">
                         <i class="bi bi-grid"></i>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('academic.year.progress') }}">
+                        <i class="bi bi-file-earmark"></i>
+                        <span>Academic Year Progress</span>
                     </a>
                 </li>
 

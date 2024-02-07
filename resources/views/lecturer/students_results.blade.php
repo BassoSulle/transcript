@@ -1,5 +1,5 @@
 @extends('layouts.lecturer_dashboard')
 
 @section('content')
-    <livewire:student-list>
-    @endsection
+    <livewire:lecturer.students-results-list />
+@endsection

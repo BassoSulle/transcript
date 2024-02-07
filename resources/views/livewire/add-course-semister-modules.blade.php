@@ -21,6 +21,18 @@
         <div class="card-body">
             <form class="row g-3 mt-2 justify-content-between" wire:submit.prevent="saveSemisterModules">
                 <div class="col-md-7">
+                    <label for="course_id" class="form-label">Academic year</label>
+                    <select id="course_id" wire:model="ac_year_id" class="form-select">
+                        <option selected>Select Academic year</option>
+                        @foreach ($acYears as $key => $acYear)
+                            <option value="{{ $acYear->id }}">{{ $acYear->year_of_studies }}</option>
+                        @endforeach
+                    </select>
+                    @error('course_id')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-md-7">
                     <label for="course_id" class="form-label">Course</label>
                     <select id="course_id" wire:model="course_id" class="form-select">
                         <option selected>Select Course</option>
@@ -32,7 +44,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <label for="semister_id" class="form-label">Semister</label>
                     <select id="semister_id" wire:model="semister_id" class="form-select">
                         <option selected>Select Semister</option>

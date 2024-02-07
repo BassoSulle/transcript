@@ -34,6 +34,7 @@ class migrationOrderCommand extends Command
             '2019_12_14_000001_create_personal_access_tokens_table.php',
             '2024_01_05_110848_create_departments_table.php',
             '2024_01_05_112140_create_semisters_table.php',
+            '2024_02_07_065432_create_academic_year_progress_table',
             '2024_01_05_113616_create_modules_table.php',
             '2024_01_05_113942_create_grades_table.php',
             '2024_01_05_114444_create_award__classifications_table.php',
@@ -44,7 +45,7 @@ class migrationOrderCommand extends Command
             '2024_01_24_134405_create_course_semiser_modules_table.php',
             '2024_01_24_132147_create_student_modules_table.php',
             '2024_01_05_120952_create_results_table.php',
-            '2024_02_02_080555_create_lecturer_modules_table.php'
+            '2024_02_02_080555_create_lecturer_modules_table.php',
 
         ];
 

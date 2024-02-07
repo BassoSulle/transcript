@@ -24,8 +24,8 @@
                             class="mx-2">{{ $lect_name }}</span></label>
                 </div>
                 <div class="col-md-3">
-                    <label for="keywords" class="form-label fw-bold">Selected modules: <span
-                            class="mx-2">{{ $module_count }}</span></label>
+                    <span for="keywords" class="badge bg-success py-2 fw-bold font-14" style="float: right;">Selected
+                        modules: <span class="mx-2">{{ $module_count }}</span></span>
                 </div>
                 <div class="col-md-7" style="display: {{ $show_assigned_modules == false ? ' ' : 'none' }};">
                     <label for="semister_id" class="form-label">Semister</label>

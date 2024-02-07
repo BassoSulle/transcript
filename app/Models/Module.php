@@ -15,6 +15,6 @@ class Module extends Model
 
    public function semister(){
 
-         return $this->belongsTo(Semister::class);
+         return $this->belongsTo(Semister::class, 'semister_id');
    }
 }

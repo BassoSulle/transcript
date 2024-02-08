@@ -19,4 +19,12 @@ class LecturerController extends Controller
         return view('lecturer.students_results');
     }
 
+    public function studentsTranscripts(){
+        return view('lecturer.students_transcripts');
+    }
+
+    public function studentTranscript($student){
+        return view('lecturer.student_transcript', compact('student'));
+    }
+
 }

@@ -55,7 +55,7 @@ class AcademicYearProgress extends Component
         $acYear = \App\Models\academicYearProgress::find($this->acYear_id);
 
             if($acYear){
-                $this->year_of_studies = $acYear->name;
+                $this->year_of_studies = $acYear->year_of_studies;
                 $this->semister_id = $acYear->current_semister_id;
 
                 $this->dispatchBrowserEvent('open-edit-modal');
@@ -67,7 +67,7 @@ class AcademicYearProgress extends Component
     public function EditAcademicYear(){
         $validatedData = $this->validate();
 
-        $acYear = \App\Models\academicYearProgress::where('id',$this->module_id)->update([
+        $acYear = \App\Models\academicYearProgress::where('id',$this->acYear_id)->update([
                 'year_of_studies'=>$validatedData['year_of_studies'],
                 'current_semister_id'=>$validatedData['semister_id']
             ]);
@@ -83,6 +83,24 @@ class AcademicYearProgress extends Component
         }
     }
     
+    public function completeYear($acYear_id) {
+
+        $acYear = \App\Models\academicYearProgress::where('id',$acYear_id)->update([
+            'progress_status' => true
+        ]);
+
+        if($acYear) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->dispatchBrowserEvent('success_alert', 'Academic year completed successfully');
+
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
+        }
+
+    }   
+
     public function clearForm() {
         $this->reset(
             'year_of_studies',

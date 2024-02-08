@@ -87,20 +87,23 @@
                     <td class="text-success fw-bold text-center">
                         @if ($acYear->semister->name == 'Semister 1')
                             25%
-                        @elseif ($acYear->semister->name == 'Semister 2')
-                            50%
-                        @elseif ($acYear->semister->name == 'Semister 3')
-                            75%
-                        @elseif ($acYear->semister->name == 'Semister 4')
+                        @elseif ($acYear->semister->name == 'Semister 2' && $acYear->progress_status == false)
                             100%
+                        @elseif ($acYear->semister->name == 'Semister 2' && $acYear->progress_status == true)
+                            Completed
                         @endif
                     </td>
                     {{-- <td>{{ $module->semister->name ?? 'None' }}</td> --}}
                     <td>
                         <button type="button" wire:click="getAcademicYearDetails({{ $acYear->id }})"
-                            class="btn btn-warning text-white"><i class="bi bi-pen-fill"></i></button>
-                        {{-- <button type="button" wire:click="getDeleteModule({{ $acYear->id }})"
-                            class="btn btn-danger"><i class="bi bi-trash-fill"></i></button> --}}
+                            class="btn btn-warning text-white" {{ $acYear->progress_status == true ? 'hidden' : '' }}><i
+                                class="bi bi-pen-fill"></i></button>
+                        @if ($acYear->semister->name == 'Semister 2')
+                            <button type="button" wire:click="completeYear({{ $acYear->id }})"
+                                class="btn btn-{{ $acYear->progress_status == true ? 'success' : 'primary' }}"
+                                {{ $acYear->progress_status == true ? 'disabled' : '' }}><i
+                                    class="bi bi-check-circle"></i></button>
+                        @endif
                     </td>
                 </tr>
             @empty
@@ -126,7 +129,7 @@
                     <form class="row g-3" wire:submit.prevent="EditAcademicYear">
                         <div class="col-md-12">
                             <input type="text" wire:model="year_of_studies" class="form-control"
-                                placeholder="Module Code">
+                                placeholder="Enter Academic yaer">
                         </div>
                         {{-- <div class="col-md-12">
                             <input type="text" wire:model="name" class="form-control" placeholder="Module Name">

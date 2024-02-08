@@ -164,7 +164,14 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('lecturer.student.results') }}">
                         <i class="bi bi-dash-circle"></i>
-                        <span>Results</span>
+                        <span>Students Results</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('lecturer.student.transcripts') }}">
+                        <i class="bi bi-dash-circle"></i>
+                        <span>Students Transcripts</span>
                     </a>
                 </li>
 
@@ -215,7 +222,7 @@
 
                 Swal.fire({
                     position: 'center',
-                    icon: 'success',
+                    icon: 'info',
                     text: message.detail,
                 });
 

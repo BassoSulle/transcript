@@ -74,7 +74,7 @@
                 <tr>
                     <th scope="row">{{ $i++ }}</th>
                     <td>{{ $nta_level->name }}</td>
-                    <td>{{ $nta_level->award->name }}</td>
+                    <td>{{ $nta_level->award->name ?? '' }}</td>
                     <td>
                         <button type="button" wire:click="getNTAlevelDetails({{ $nta_level->id }})"
                             class="btn btn-warning text-white"><i class="bi bi-pen-fill"></i></button>

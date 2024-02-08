@@ -31,7 +31,7 @@ class GradeList extends Component
 //Function to save grade  to database
     public function SaveGrade(){
         $validatedData = $this->validate();
-        Grade::create([
+        $grade = Grade::create([
                     'name'=>$validatedData['name'],
                     'low_marks'=>$validatedData['low_marks'],
                     'high_marks'=>$validatedData['high_marks'],
@@ -39,27 +39,43 @@ class GradeList extends Component
 
                 ]);
 
-        $this->dispatchBrowserEvent('close-modal');
+        if($grade) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->dispatchBrowserEvent('success_alert', 'Grade is added successfully');
 
-
-        notify()->success('Grade is added succesfully.!');
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
+        }
 
     }
 
 //Function to Delete Grade
     public function DeleteGrade(int $grade_id){
-    Grade::where('id',$grade_id)->delete();
-    notify()->success('Grade is Deleted succesfully.!');
+        $grade = Grade::where('id',$grade_id)->delete();
+        
+        if($grade) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->dispatchBrowserEvent('success_alert', 'Grade is deleted successfully');
+
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
+        }
+        $this->dispatchBrowserEvent('success_alert', 'Grade is Deleted successfully');
 
     }
 
-//functionto  get grade details
+//function  get grade details
     public function getGradeDetails(int $grade_id) {
         $this->grade_id=$grade_id;
         $gradeData = Grade::find($this->grade_id);
 
         if ($gradeData) {
             $this->grade_id = $gradeData->id;
+            $this->name = $gradeData->name;
             $this->low_marks = $gradeData->low_marks;
             $this->high_marks = $gradeData->high_marks;
             $this->point = $gradeData->point;
@@ -73,7 +89,7 @@ class GradeList extends Component
 
         $validatedData = $this->validate();
 
-        Grade::where('id', $this->grade_id)->update([
+        $grade = Grade::where('id', $this->grade_id)->update([
             'name' => $validatedData['name'],
             'low_marks' => $validatedData['low_marks'],
             'high_marks' => $validatedData['high_marks'],
@@ -81,10 +97,26 @@ class GradeList extends Component
 
         ]);
 
-        $this->dispatchBrowserEvent('close-modal');
+        if($grade) {
+            $this->clearForm();
+            $this->dispatchBrowserEvent('close-modal');
+            $this->dispatchBrowserEvent('success_alert', 'Grade is updated successfully');
 
-        notify()->success('Grade is Udated succesfully.!');
+        } else {
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            
+        }
 
+    }
+
+    public function clearForm() {
+        $this->reset(
+            'name',
+            'low_marks',
+            'high_marks',
+            'point',
+            'grade_id'
+        );
     }
 
 

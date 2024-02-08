@@ -24,7 +24,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Add Grade</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            wire:click="clearForm"></button>
                     </div>
                     <div class="modal-body">
 
@@ -46,7 +47,8 @@
                                     placeholder="Grade points">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                    wire:click="clearForm">Close</button>
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
@@ -102,7 +104,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Grade</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        wire:click="clearForm"></button>
                 </div>
                 <div class="modal-body">
 
@@ -112,7 +115,8 @@
                             <input type="text" wire:model="name" class="form-control" placeholder="Grade Name">
                         </div>
                         <div class="col-md-6">
-                            <input type="integer" wire:model="high_marks" class="form-control" placeholder="High Marks">
+                            <input type="integer" wire:model="high_marks" class="form-control"
+                                placeholder="High Marks">
                         </div>
                         <div class="col-md-6">
                             <input type="integer" wire:model="low_marks" class="form-control"
@@ -123,7 +127,8 @@
                                 placeholder="Grade points">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                wire:click="clearForm">Close</button>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>

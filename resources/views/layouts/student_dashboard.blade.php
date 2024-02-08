@@ -133,12 +133,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('student.profile') }}">
                         <i class="bi bi-file-earmark"></i>
                         <span>Profile</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('student.module') }}">

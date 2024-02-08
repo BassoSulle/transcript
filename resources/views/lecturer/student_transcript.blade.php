@@ -44,11 +44,10 @@
     </head>
 
     <body>
-        {{-- <main id="main" class="main" style="min-height: 77vh;"> --}}
-        <div class="mx-5 my-5">
+
+        <div class="mx-5 my-3">
             <livewire:lecturer.student-transcript :student="$student" />
         </div>
-        {{-- </main><!-- End #main --> --}}
 
         <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
         <!-- Vendor JS Files -->

@@ -12,12 +12,12 @@
                                 </center>
                             </div>
                             <div class="col-md-9 text-center mt-4">
-                                <h4 style="font-size: 18px;">DAR ES SALAAM INSTITUTE OF
+                                <h4 style="font-size: 18px; font-weight: 700;">DAR ES SALAAM INSTITUTE OF
                                     TECHNOLOGY</h4>
-                                <h4 style="font-size: 18px;">ACADEMIC TRANSCRIPT</h1>
+                                <h4 class="mt-4" style="font-size: 18px; font-weight: 700;">ACADEMIC TRANSCRIPT</h1>
                             </div>
                         </div>
-                        <div class="row justify-content-end end-0 mt-3">
+                        <div class="row justify-content-end end-0 mt-4">
                             <div class="col-md-6 d-flex">
                                 <span class="me-5 fw-bold">BIRTHDATE</span>
                                 <span class="me-5 fw-bold">GENDER</span>
@@ -37,7 +37,7 @@
                                 <span class="ms-4">{{ $student->created_at->format('M d, Y') }}</span>
                             </div>
                             <div class="col-md-6 d-flex ms-5">
-                                <span class="ms-5 me-2 fw-bold">DATE OF GRADUATION:</span>
+                                <span class="ms-5 me-3 fw-bold">DATE OF GRADUATION:</span>
                                 <span class="ms-5">2/12/2022</span>
                             </div>
                         </div>
@@ -62,7 +62,16 @@
                         <div class="row ms-2 mt-4">
                             <div class="col-md-6 d-flex">
                                 <span class="me-4 fw-bold">OVERALL GPA:</span>
-                                <span class="me-5">4.6</span>
+                                <span class="me-5 ms-4">4.6</span>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end end-0 mb-4">
+                            <div class="col-md-2">
+                                <center>
+                                    <span class="fw-bold" style="font-size: 10px;">SCAN TO VERIFY</span>
+                                    <img src="{{ asset('assets/img/qr-code.png') }}" alt="Institute logo"
+                                        style="width: 100px; ">
+                                </center>
                             </div>
                         </div>
                     </div>

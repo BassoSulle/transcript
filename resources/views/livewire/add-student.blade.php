@@ -2,11 +2,11 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col">
-                <h1>Add Staff</h1>
+                <h1>Add Student</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Add Staff</li>
+                        <li class="breadcrumb-item active">Add Student</li>
                     </ol>
                 </nav>
             </div>

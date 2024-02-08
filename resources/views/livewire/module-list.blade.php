@@ -61,31 +61,6 @@
         </div><!-- End Disabled Backdrop Modal-->
     </div>
 
-
-             <!-- Primary Color Bordered Table -->
-             <table class="table table-bordered border-primary mt-4">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Module Name</th>
-                    <th scope="col">Module Code</th>
-                    <th scope="col">Module Credit</th>
-                    <th scope="col">Semister name</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @php
-                    $i=1;
-                    @endphp
-                @forelse ($modules as $module)
-                <tr>
-                    <th scope="row">{{$i++}}</th>
-                    <td>{{$module->name}}</td>
-                    <td>{{$module->code}}</td>
-                    <td>{{$module->credit}}</td>
-                    <td>{{$module->semister->name ?? 'None'}}</td>
-
     <!-- Primary Color Bordered Table -->
     <table class="table table-bordered border-primary">
         <thead>

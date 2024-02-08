@@ -24,6 +24,7 @@ class Student extends Authenticatable
         'first_name',
         'middle_name',
         'surname',
+        'registration_no',
         'role',
         'course_id',
         'gender',
@@ -32,7 +33,7 @@ class Student extends Authenticatable
         'passport_size',
         'password',
     ];
- 
+
      /**
       * The attributes that should be hidden for serialization.
       *
@@ -43,7 +44,7 @@ class Student extends Authenticatable
          'password',
          'remember_token',
      ];
- 
+
      /**
       * The attributes that should be cast.
       *
@@ -56,6 +57,6 @@ class Student extends Authenticatable
 
     public function course(){
         return $this->belongsTo(Course::class);
-        
+
     }
 }

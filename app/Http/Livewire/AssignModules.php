@@ -17,7 +17,7 @@ class AssignModules extends Component
     public $module_ids = [];
 
     public $show_assigned_modules = false;
-    
+
     public $editMode = false;
 
     public function mount($staff = null) {
@@ -45,7 +45,7 @@ class AssignModules extends Component
                 $module = lecturer_module::create([
                     'lecturer_id' => $this->staff_id,
                     'module_id' => $this->module_id,
-                    'semister_id' => $this->semister_id
+                    // 'semister_id' => $this->semister_id
                 ]);
 
                 if ($module) {
@@ -94,9 +94,9 @@ class AssignModules extends Component
         $this->reset(
             'module_id',
         );
-        
+
     }
-    
+
     public function render()
     {
         $modules = Module::all();
@@ -105,7 +105,7 @@ class AssignModules extends Component
 
         $this->assigned_modules = lecturer_module::where('lecturer_id', $this->staff_id)->get();
         $this->module_count = lecturer_module::where('lecturer_id', $this->staff_id)->count();
-        
+
         if(!empty($this->semister_id)) {
             $course_semister_modules = course_semister_modules::where('semister_id',$this->semister_id)->get();
 
@@ -113,14 +113,14 @@ class AssignModules extends Component
                 $modules = Module::whereIn('id', json_decode($item->module_ids))->get();
 
             }
-            
-        }        
+
+        }
 
         return view('livewire.assign-modules', [
             'courses' => $courses,
             'semisters' => $semisters,
             'modules' => $modules,
-            
+
         ]);
     }
 }

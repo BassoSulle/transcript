@@ -49,12 +49,13 @@
                                             {{-- <td>{{ $module->semister->name ?? 'None' }}</td> --}}
                                             <td class="justify-content-center align-items-center text-center">
                                                 <input wire:ignore.self type="checkbox" class=""
-                                                    wire:model="module_ids" value="{{ $module->id }}"
-                                                    style="width: 30px; height: 30px; border-radius: 100px; border: 1px solid #ccc;">
+                                                    wire:model.live="module_ids" value="{{ $module->id }}"
+                                                    style="width: 30px; height: 30px; border-radius: 100px; border: 1px solid #ccc;"
+                                                    {{ $registration_status == true ? 'disabled' : '' }}>
                                             </td>
                                         </tr>
                                     @empty
-                                        <td colspan="9" class="text-center">No module found.</td>
+                                        <td colspan="5" class="text-center">No module found.</td>
                                     @endforelse
 
                                 </tbody>
@@ -65,7 +66,7 @@
                     <div class="row">
                         <div class="col">
                             <button type="button" wire:click='registerModules' class="button btn btn-success"
-                                style="float: right;">
+                                style="float: right; display: {{ $registration_status == true ? 'none' : '' }};">
                                 Register Modules
                             </button>
                         </div>

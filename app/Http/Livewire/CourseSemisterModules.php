@@ -22,7 +22,7 @@ class CourseSemisterModules extends Component
 
     public function DeleteCsm(){
 
-    $course_semister_modules = course_semister_modules::where('id',$this->csm_id)->delete();
+        $course_semister_modules = course_semister_modules::where('id',$this->csm_id)->delete();
 
         if($course_semister_modules) {
             $this->dispatchBrowserEvent('closeDeleteModal');

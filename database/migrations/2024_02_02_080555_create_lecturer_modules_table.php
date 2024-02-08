@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('lecturer_id');
             $table->unsignedBigInteger('module_id');
+            $table->unsignedBigInteger('semister_id');
             $table->boolean('complete_status')->default(false);
             $table->timestamps();
 
@@ -29,6 +30,11 @@ return new class extends Migration
             $table->foreign('module_id')
                 ->references('id')
                 ->on('modules')
+                ->cascadeOnDelete();
+
+            $table->foreign('semister_id')
+                ->references('id')
+                ->on('semisters')
                 ->cascadeOnDelete();
         });
     }

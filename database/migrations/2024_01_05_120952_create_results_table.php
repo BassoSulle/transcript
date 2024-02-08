@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('student_reg_no');
             $table->string('module_code');
             $table->double('c_a_marks');
-            $table->double('s_e_marks');
+            $table->double('f_e_marks');
             $table->double('total_marks');
             $table->unsignedBigInteger('grade_id')->nullable();
             $table->unsignedBigInteger('staff_id');

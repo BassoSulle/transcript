@@ -25,6 +25,8 @@ use App\Http\Controllers\Auth\LoginController;
 
 // Auth::routes();
 
+Route::get('/', [LoginController::class, 'show_login']);
+
 Route::get('login', [LoginController::class, 'show_login'])->name('login');
 
 Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
@@ -95,6 +97,10 @@ Route::middleware(['auth:web'])->group(function() {
         Route::get('/module', [LecturerController::class, 'module'])->name('lecturer.module');
 
         Route::get('/students_results', [LecturerController::class, 'studentResults'])->name('lecturer.student.results');
+        
+        Route::get('/students_transcripts', [LecturerController::class, 'studentsTranscripts'])->name('lecturer.student.transcripts');
+
+        Route::get('/student_transcript/{student}', [LecturerController::class, 'studentTranscript'])->name('lecturer.student_transcript');
 
 
     });

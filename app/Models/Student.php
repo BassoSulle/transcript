@@ -27,6 +27,7 @@ class Student extends Authenticatable
         'registration_no',
         'role',
         'course_id',
+        'registration_no',
         'gender',
         'email',
         'dob',

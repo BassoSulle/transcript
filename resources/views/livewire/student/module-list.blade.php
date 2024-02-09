@@ -1,7 +1,7 @@
 <div>
     <div class="pagetitle">
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <h1>Module Registration</h1>
                 <nav>
                     <ol class="breadcrumb">
@@ -10,7 +10,12 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col">
+            <div class="col-md-3">
+                <button type="button" wire:click="refreshPage"
+                    class="btn btn-primary rounded-3 btn-sm fw-bold font-12 mt-2" style="float: right;"
+                    title="Refresh"><i class="bi bi-bootstrap-reboot"></i> Refresh</button>
+            </div>
+            <div class="col-3">
                 <span type="button" class="badge bg-success py-2 mt-2" style="float: right; font-size: 13px;">
                     {{ $current_modules->semister->name }}
                 </span>

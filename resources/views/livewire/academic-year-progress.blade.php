@@ -85,8 +85,8 @@
                     <td>{{ $acYear->year_of_studies }}</td>
                     <td>{{ $acYear->semister->name }}</td>
                     <td class="text-success fw-bold text-center">
-                        @if ($acYear->semister->name == 'Semister 1')
-                            25%
+                        @if ($acYear->semister->name == 'Semister 1' && $acYear->progress_status == false)
+                            50%
                         @elseif ($acYear->semister->name == 'Semister 2' && $acYear->progress_status == false)
                             100%
                         @elseif ($acYear->semister->name == 'Semister 2' && $acYear->progress_status == true)
@@ -129,7 +129,7 @@
                     <form class="row g-3" wire:submit.prevent="EditAcademicYear">
                         <div class="col-md-12">
                             <input type="text" wire:model="year_of_studies" class="form-control"
-                                placeholder="Enter Academic yaer">
+                                placeholder="Enter Academic yaer" readonly>
                         </div>
                         {{-- <div class="col-md-12">
                             <input type="text" wire:model="name" class="form-control" placeholder="Module Name">

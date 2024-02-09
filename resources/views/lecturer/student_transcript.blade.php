@@ -45,10 +45,102 @@
 
     <body>
 
-        <div class="mx-5 my-3">
-            <livewire:lecturer.student-transcript :student="$student" />
-        </div>
+        <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top d-flex align-items-center">
 
+            <div class="d-flex align-items-center justify-content-between">
+                <a href="index.html" class="logo d-flex align-items-center">
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+                    <span class="d-none d-lg-block ms-2">SOMA</span>
+                </a>
+                {{-- <i class="bi bi-list toggle-sidebar-btn"></i> --}}
+            </div><!-- End Logo -->
+
+            <nav class="header-nav ms-auto">
+                <ul class="d-flex align-items-center">
+
+                    {{-- <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link nav-icon search-bar-toggle " href="#">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    </li><!-- End Search Icon--> --}}
+
+                    <li class="nav-item dropdown pe-3">
+
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                            data-bs-toggle="dropdown">
+                            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
+                            <span
+                                class="d-none d-md-block dropdown-toggle ps-2">{{ strtoupper(substr(auth()->user()->first_name, 0, 1)) }}.
+                                {{ auth()->user()->middle_name != '' ? strtoupper(substr(auth()->user()->middle_name, 0, 1)) . '.' : '' }}
+                                {{ auth()->user()->surname }}</span>
+                        </a><!-- End Profile Iamge Icon -->
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <h6>{{ auth()->user()->first_name }} {{ auth()->user()->middle_name }}
+                                    {{ auth()->user()->surname }}</h6>
+                                <span>{{ auth()->user()->role }}</span>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                    <i class="bi bi-person"></i>
+                                    <span>My Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <li>
+                                <form id="logout-form" action="{{ route('lecturer.logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
+                                <a href="{{ route('lecturer.logout') }}"
+                                    onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();"
+                                    class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Sign Out</span>
+                                </a>
+                            </li>
+
+                        </ul><!-- End Profile Dropdown Items -->
+                    </li><!-- End Profile Nav -->
+
+                </ul>
+            </nav><!-- End Icons Navigation -->
+
+            {{-- <x-notify::notify /> --}}
+            {{-- @include('notify::components.notify') --}}
+
+        </header><!-- End Header -->
+
+        <main id="main" class="main" style="min-height: 77vh; margin-left: 0px !important;">
+            <livewire:lecturer.student-transcript :student="$student" />
+        </main>
+
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer" style="margin-left: 0px !important;">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Soma</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+                Designed by <a href="#">Group E</a>
+            </div>
+        </footer><!-- End Footer -->
+
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+                class="bi bi-arrow-up-short"></i></a>
         <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
         <!-- Vendor JS Files -->
         <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>

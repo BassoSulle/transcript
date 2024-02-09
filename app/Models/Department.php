@@ -17,5 +17,10 @@ class Department extends Model
     public function course(){
 
         return $this->hasMany(Course::class);
+    }
+
+    public function staff(){
+
+      return $this->hasMany(User::class, 'department_id');
   }
 }

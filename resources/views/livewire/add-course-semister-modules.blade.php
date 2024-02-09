@@ -67,7 +67,7 @@
                                             <input class="form-check-input" type="checkbox" wire:model="module_ids"
                                                 id="module-{{ $key }}" value="{{ $module->id }}">
                                             <label class="form-check-label" for="module-{{ $key }}">
-                                                {{ $module->name }}
+                                                {{ $module->code }}: {{ $module->name }}
                                             </label>
                                         </div>
                                     </div>

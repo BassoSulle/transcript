@@ -16,13 +16,18 @@ return new class extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_reg_no');
-            $table->string('module_code');
+            $table->unsignedBigInteger('module_id');
             $table->double('c_a_marks');
             $table->double('f_e_marks');
             $table->double('total_marks');
             $table->unsignedBigInteger('grade_id')->nullable();
             $table->unsignedBigInteger('staff_id');
             $table->timestamps(); //created_at will be used as uploaded_date
+
+            $table->foreign('module_id')
+                ->references('id')
+                ->on('modules')
+                ->cascadeOnDelete();
 
             $table->foreign('grade_id')
                 ->references('id')

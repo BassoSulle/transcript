@@ -70,6 +70,7 @@
                         <option selected>Choose position</option>
                         <option value="Admin">Administrator</option>
                         <option value="HOD">Head of Department</option>
+                        <option value="Register">Register</option>
                         <option value="Lecturer">Lecturer</option>
                     </select>
                     @error('role')

@@ -101,6 +101,8 @@ Route::middleware(['auth:web'])->group(function() {
         Route::get('/students_transcripts', [LecturerController::class, 'studentsTranscripts'])->name('lecturer.student.transcripts');
 
         Route::get('/student_transcript/{student}', [LecturerController::class, 'studentTranscript'])->name('lecturer.student_transcript');
+        
+        Route::get('/download_student_transcript/{student}', [LecturerController::class, 'downloadStudentTranscript'])->name('lecturer.download_student_transcript');
 
 
     });

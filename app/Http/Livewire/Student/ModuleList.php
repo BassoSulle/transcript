@@ -45,10 +45,10 @@ class ModuleList extends Component
 
         foreach($moduleIds as $module_id) {
 
-            $checkModuleExists = student_module::where('student_id', auth()->user()->id)->where('module_id', $module_id)->exists();
+            $checkModuleExists = student_module::where('student_id', auth()->user()->id)->where('module_id', $module_id)->where('complete_status', false)->exists();
 
             if ($checkModuleExists) {
-                return $this->dispatchBrowserEvent('message_alert', 'Module already registered.');
+                $this->dispatchBrowserEvent('message_alert', 'Module already registered.');
 
             } else {
 
@@ -83,17 +83,25 @@ class ModuleList extends Component
         $this->registration_status = true;
 
     }
+
+    public function refreshPage() {
+
+        return redirect()->route('student.module');
+    
+    }
     
     public function render()
     {
         
         $acYear = \App\Models\academicYearProgress::latest()->first();
         
-        $current_modules = course_semister_modules::where('course_id', auth()->user()->course_id)->where('semister_id', $acYear->current_semister_id)->first();
+        $current_modules = course_semister_modules::where('course_id', auth()->user()->course_id)->where('semister_id', $acYear->current_semister_id)->where('ac_year_id', $acYear->id)->first();
+        
 
         // if($this->registration_status == false) {
             $this->modules = Module::whereIn('id', json_decode($current_modules->module_ids))->get();
 
+            // dd($this->module_ids);
         // }
         
         return view('livewire.student.module-list', [

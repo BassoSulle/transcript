@@ -13,7 +13,7 @@ use App\Models\course_semister_modules;
 
 class StudentsResultsList extends Component
 {
-    public $course_id, $module_id, $module, $module_code, $stu_registration_no;
+    public $course_id, $module_id, $module, $stu_registration_no;
 
     public $students_enrolled = [];
 
@@ -62,11 +62,11 @@ class StudentsResultsList extends Component
 
             if(!empty($this->stu_c_a_marks[$this->stu_registration_no]) && !empty($this->stu_f_e_marks[$this->stu_registration_no])) {
 
-                $check_student_results = Result::where('module_code', $this->module->code)->where('student_reg_no', $this->stu_registration_no)->get();
+                $check_student_results = Result::where('module_id', $this->module->id)->where('student_reg_no', $this->stu_registration_no)->get();
 
                 if(count($check_student_results) != 0) {
 
-                    $stu_module_results_update = Result::where('module_code', $this->module->code)->where('student_reg_no', $this->stu_registration_no)->update([
+                    $stu_module_results_update = Result::where('module_id', $this->module->id)->where('student_reg_no', $this->stu_registration_no)->update([
                         'c_a_marks' => $this->stu_c_a_marks[$this->stu_registration_no],
                         'f_e_marks' => $this->stu_f_e_marks[$this->stu_registration_no],
                         'total_marks' => $this->total_marks[$this->stu_registration_no],
@@ -87,7 +87,7 @@ class StudentsResultsList extends Component
                     
                     $stu_module_results = Result::create([
                         'student_reg_no' => $this->stu_registration_no,
-                        'module_code' => $this->module->code,
+                        'module_id' => $this->module->id,
                         'c_a_marks' => $this->stu_c_a_marks[$this->stu_registration_no],
                         'f_e_marks' => $this->stu_f_e_marks[$this->stu_registration_no],
                         'total_marks' => $this->total_marks[$this->stu_registration_no],
@@ -135,7 +135,7 @@ class StudentsResultsList extends Component
         if(!empty($this->module_id)) {
             $this->module = Module::find($this->module_id);        
 
-            $students_results = Result::where('module_code', $this->module->code)->get();
+            $students_results = Result::where('module_id', $this->module->id)->get();
 
             foreach($students_results as $result) {
                 $this->stu_c_a_marks[$result->student_reg_no] = $result->c_a_marks;
@@ -149,7 +149,7 @@ class StudentsResultsList extends Component
         
         $acYear = \App\Models\academicYearProgress::latest()->first();
 
-        $current_modules = course_semister_modules::where('semister_id', $acYear->current_semister_id)->first();
+        $current_modules = course_semister_modules::where('semister_id', $acYear->current_semister_id)->where('ac_year_id', $acYear->id)->first();
         
         // $courses = Course::latest()->get();
         $modules = lecturer_module::where('lecturer_id', auth()->user()->id)->whereIn('module_id', json_decode($current_modules->module_ids))->get();

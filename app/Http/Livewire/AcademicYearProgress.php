@@ -5,10 +5,14 @@ namespace App\Http\Livewire;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Semister;
+use App\Models\student_module;
+use App\Models\course_semister_modules;
 
 class AcademicYearProgress extends Component
 {
-    public $year_of_studies, $semister_id, $acYear_id;
+    public $year_of_studies, $semister_id, $acYear_id, $current_semister_id, $current_modules;
+    
+    public $moduleIds = [];
     
     public function mount() {
         $nextYear = Carbon::now()->addYear()->format('Y');
@@ -54,17 +58,27 @@ class AcademicYearProgress extends Component
 
         $acYear = \App\Models\academicYearProgress::find($this->acYear_id);
 
-            if($acYear){
-                $this->year_of_studies = $acYear->year_of_studies;
-                $this->semister_id = $acYear->current_semister_id;
+        if($acYear){
+            $this->year_of_studies = $acYear->year_of_studies;
+            $this->semister_id = $acYear->current_semister_id;
+            $this->current_semister_id = $acYear->current_semister_id;
 
-                $this->dispatchBrowserEvent('open-edit-modal');
+            $this->current_modules = course_semister_modules::where('ac_year_id', $acYear->id)->where('semister_id', $acYear->current_semister_id)->get();
+
+            
+            foreach($this->current_modules as $data) {
+                $this->moduleIds[$data->semister_id] = json_decode($data->module_ids);
 
             }
+            
+            $this->dispatchBrowserEvent('open-edit-modal');
+
+        }
     }
 
     //function to edit semister
     public function EditAcademicYear(){
+      
         $validatedData = $this->validate();
 
         $acYear = \App\Models\academicYearProgress::where('id',$this->acYear_id)->update([
@@ -73,12 +87,26 @@ class AcademicYearProgress extends Component
             ]);
 
         if($acYear) {
+
+            if($this->current_semister_id != $this->semister_id) {
+                foreach($this->moduleIds as $data) {
+                    $complete_student_semister_module = student_module::whereIn('module_id', $data)->update([
+                        'complete_status' => true
+                    ]);
+                    if(!$complete_student_semister_module) {
+                        return $this->dispatchBrowserEvent('failure_alert', 'An error occurred on updating Students semister module complete status. Try again later.');
+                    }
+                    
+                }
+            }
+
             $this->clearForm();
             $this->dispatchBrowserEvent('close-modal');
             $this->dispatchBrowserEvent('success_alert', 'Academic year updated successfully');
-
+    
+          
         } else {
-            $this->dispatchBrowserEvent('failure_alert', 'An error occurred. Try again later.');
+            $this->dispatchBrowserEvent('failure_alert', 'An error occurred on updating Academic year details. Try again later.');
             
         }
     }
@@ -102,17 +130,21 @@ class AcademicYearProgress extends Component
     }   
 
     public function clearForm() {
+        $this->moduleIds = [];
+        
         $this->reset(
             'year_of_studies',
             'semister_id',
-            'acYear_id'
+            'acYear_id',
+            'current_semister_id',
+            'current_modules'
         );
     }
     
     public function render()
     {
         $acYears = \App\Models\academicYearProgress::latest()->get();
-        $semisters=Semister::all();
+        $semisters = Semister::all();
 
         return view('livewire.academic-year-progress', [
             'acYears' => $acYears,

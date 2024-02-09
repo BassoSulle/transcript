@@ -27,4 +27,8 @@ class LecturerController extends Controller
         return view('lecturer.student_transcript', compact('student'));
     }
 
+    public function downloadStudentTranscript($student){
+        return view('lecturer.student_transcript', compact('student'));
+    }
+
 }

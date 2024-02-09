@@ -147,12 +147,12 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link collapsed" href="{{ route('student.academic.records') }}">
                         <i class="bi bi-dash-circle"></i>
                         <span>Academic Records</span>
                     </a>
-                </li>
+                </li> --}}
 
             </ul>
 

@@ -85,7 +85,7 @@ class StudentTranscript extends Component
 
             }
 
-            $this->overall_gpa = $total_gpa/(count($this->semister_gpa));
+            $this->overall_gpa = round($total_gpa/(count($this->semister_gpa)), 1);
 
             $this->award_class = AwardClassification::where('low_gpa', '<=', round($this->overall_gpa, 0))
                                 ->where('high_gpa', '>=', round($this->overall_gpa, 0))

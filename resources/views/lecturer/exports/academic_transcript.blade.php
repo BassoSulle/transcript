@@ -3,17 +3,23 @@
         <div class="card">
             <div class="card-body p-3" style="min-height: 80vh;">
                 <div class="px-2" style="border: 2px double #464646; min-height: 80vh;">
-                    <div class="row pt-3">
+                    <div class="row pt-3 justify-content-between">
                         <div class="col-md-2">
                             <center>
                                 <img src="{{ asset('assets/img/dit-logo.png') }}" alt="Institute logo"
                                     style="width: 120px; ">
                             </center>
                         </div>
-                        <div class="col-md-9 text-center mt-4">
+                        <div class="col-md-6 text-center mt-4">
                             <h4 style="font-size: 18px; font-weight: 700;">DAR ES SALAAM INSTITUTE OF
                                 TECHNOLOGY</h4>
                             <h4 class="mt-4" style="font-size: 18px; font-weight: 700;">ACADEMIC TRANSCRIPT</h1>
+                        </div>
+                        <div class="col-md-2">
+                            <center>
+                                <img src="{{ !empty($student->passport_size) ? asset('storage/student_passports/' . $student->passport_size) : asset('assets/img/profile-img.jpg') }}"
+                                    alt="Institute logo" style="width: 120px; height: 120px;">
+                            </center>
                         </div>
                     </div>
                     <div class="row justify-content-end end-0 mt-4">
@@ -128,19 +134,19 @@
                                         <thead>
                                             <tr>
                                                 <td class="fw-bold text-white"
-                                                    style="background: #7d7b7b; font-size: 14px;" colspan="3">
+                                                    style="background: blue; font-size: 14px;" colspan="3">
                                                     SEMISTER {{ $r }}</td>
                                             </tr>
                                             <tr>
-                                                <th scope="col" style="font-size: 13px; background: #ccc;">
+                                                <th scope="col" style="font-size: 13px; background: yellow;">
                                                     CODE
                                                 </th>
-                                                <th scope="col" style="font-size: 13px; background: #ccc;">
+                                                <th scope="col" style="font-size: 13px; background: yellow;">
                                                     MODULE
                                                     NAME
                                                 </th>
                                                 <th scope="col" class="text-center"
-                                                    style="font-size: 13px; background: #ccc;">
+                                                    style="font-size: 13px; background: yellow;">
                                                     GRADE
                                                 </th>
                                             </tr>
@@ -157,7 +163,7 @@
                                                 </tr>
                                             @endforeach
                                             <tr>
-                                                <td class="fw-bold" style="background: #ccc; font-size: 13px;"
+                                                <td class="fw-bold" style="background: yellow; font-size: 13px;"
                                                     colspan="3">
                                                     SEMISTER GPA:<span class="ms-2">{{ $semister_gpa[$r] }}</span>
 

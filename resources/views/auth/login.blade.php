@@ -53,8 +53,8 @@
 
                                 <div class="d-flex justify-content-center py-4">
                                     <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                        <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
-                                        <span class="d-none d-lg-block ms-2">SOMA</span>
+                                        {{-- <img src="{{ asset('assets/img/logo.png') }}" alt="Logo"> --}}
+                                        <span class="d-none d-lg-block ms-2 text-white">SOMA</span>
                                     </a>
                                 </div><!-- End Logo -->
 
@@ -119,7 +119,7 @@
                                     <!-- You can delete the links only if you purchased the pro version. -->
                                     <!-- Licensing information: https://bootstrapmade.com/license/ -->
                                     <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                                    Designed by <a href="https://bootstrapmade.com/">Group E</a>
+                                    {{-- Designed by <a href="https://bootstrapmade.com/">Group E</a> --}}
                                 </div>
 
                             </div>

@@ -86,8 +86,8 @@
                     <td>{{ $acYear->semister->name }}</td>
                     <td class="text-success fw-bold text-center">
                         @if ($acYear->semister->name == 'Semister 1')
-                            25%
-                        @elseif ($acYear->semister->name == 'Semister 2' && $acYear->progress_status == false)
+                            50%
+                        @elseif ($acYear->sefmister->name == 'Semister 2' && $acYear->progress_status == false)
                             100%
                         @elseif ($acYear->semister->name == 'Semister 2' && $acYear->progress_status == true)
                             Completed

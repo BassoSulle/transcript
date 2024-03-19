@@ -18,6 +18,7 @@
             </div>
         </div>
     </div>
+
     <div class="position:absolute; top:0; right:0;">
         <div class="modal fade" wire:ignore.self id="disablebackdrop" tabindex="-1" data-bs-backdrop="false">
             <div class="modal-dialog">

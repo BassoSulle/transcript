@@ -4,5 +4,7 @@
 
 <livewire:student-list>
 
+
+
 @endsection
 
